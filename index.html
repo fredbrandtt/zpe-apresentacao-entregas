@@ -502,11 +502,14 @@
       animation-play-state: running;
     }
 
+    /* O brilho anima mesmo com prefers-reduced-motion, como os vídeos
+       (ver sincronizarVideos). Parado ele vira uma mancha sobre o texto,
+       e apagado o mapa some. A regra global de reduced-motion encurta
+       toda animação para 0.01ms com !important; estes seletores são
+       mais específicos e devolvem a duração. */
     @media (prefers-reduced-motion: reduce) {
-      .darkmap .dm-glow {
-        animation: none;
-        opacity: .05;
-      }
+      .darkmap .dm-glow-a { animation-duration: 19s !important; }
+      .darkmap .dm-glow-b { animation-duration: 23s !important; }
     }
 
     /* O SVG é escuro na origem; o filtro o leva ao azul institucional
@@ -771,7 +774,8 @@
     }
 
     /* Video da capa: o <img> fica embaixo como poster/fallback. O vídeo cobre
-       quando carrega; se falhar (ou prefers-reduced-motion), some e sobra a imagem. */
+       quando carrega; se falhar, some e sobra a imagem — o próprio pôster
+       do vídeo, para a capa nunca ficar sem o globo. */
     .capa-video {
       position: absolute;
       inset: 0;
@@ -788,12 +792,6 @@
       position: absolute;
       inset: 0;
       z-index: 0;
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      .capa-video {
-        display: none;
-      }
     }
 
     .capa-veil {
@@ -1387,11 +1385,6 @@
       background: radial-gradient(120% 80% at 50% 100%, transparent 30%, rgba(5, 11, 24, .55) 100%);
     }
 
-    @media (prefers-reduced-motion: reduce) {
-      .enc-bg .slide-video {
-        display: none;
-      }
-    }
 
     /* Painel de destaque — a ZPE não é proprietária */
     .claim {
@@ -2393,11 +2386,6 @@
       z-index: 2;
     }
 
-    @media (prefers-reduced-motion: reduce) {
-      .hero .hero-video {
-        display: none;
-      }
-    }
 
     .hero-l {
       font-family: 'JetBrains Mono', monospace;
@@ -4510,7 +4498,7 @@
             <source src="assets/videos/video_capa_web.webm" type="video/webm">
             <source src="assets/videos/video_capa_web.mp4" type="video/mp4">
           </video>
-          <img class="capa-video-fallback" src="assets/images/bg_hero_blue_compressed.jpg" alt="" loading="eager">
+          <img class="capa-video-fallback" src="assets/videos/video_capa_poster.jpg" alt="" loading="eager">
         </div>
         <div class="capa-veil"></div>
 
@@ -6923,10 +6911,10 @@
       delete v.dataset.montado;
     }
 
+    /* Os vídeos tocam mesmo com prefers-reduced-motion: são fundo
+       ambiente, sem som, e o PC de apresentação tem "Efeitos de
+       animação" desligado no Windows (pedido do cliente). */
     function sincronizarVideos(slide) {
-      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      if (reduce) return;
-
       slideVideos.forEach(v => {
         if (slide && slide.contains(v)) {
           montarFontes(v);
@@ -7235,6 +7223,7 @@
        ========================================================= */
     (function () {
       const assets = [
+        'assets/videos/video_capa_poster.jpg',
         'assets/images/bg_hero_blue_compressed.jpg',
         'assets/images/world_dotted.svg',
         'assets/logos/zpe_white.png',

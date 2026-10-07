@@ -86,6 +86,8 @@ The side drawer (`#dw`, "PAINEL DE ENTREGÁVEIS") is still in the file but **no 
 
 `.anim` + `.d1`–`.d8` reveal on slide entry (Corporate motion: `cubic-bezier(.2,0,0,1)`, no bounce). Bars and counters run in `runSlideAnimations()` and honour `prefers-reduced-motion`.
 
+The ambient layer does **not** honour it, on purpose: the background videos and the `.darkmap` glow keep running. The presentation PC has Windows "Efeitos de animação" off, which Chrome reports as `reduce`, and the client wants the videos playing. Hiding the videos left the cover without the globe; freezing the glow left a smudge over the text. Don't reintroduce reduced-motion guards on them.
+
 ### Background videos (memory budget)
 
 Only the cover video (`#capaVideo`) autoplays. Chapter openers and the CZPE card have `preload="none"` with URLs in `data-src-webm` / `data-src-mp4`; `montarFontes()` mounts the sources on entry and `descarregarVideo()` strips them on exit. This is a crash fix for iOS Safari (too many simultaneous decoders), not an optimisation — do not add `autoplay`/`preload="auto"` to the secondaries.
