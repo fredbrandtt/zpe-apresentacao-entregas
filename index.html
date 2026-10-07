@@ -1866,8 +1866,7 @@
       height: 100%;
       padding: 150px 168px 190px;
       display: grid;
-      grid-template-columns: 1fr 470px;
-      gap: 96px;
+      grid-template-columns: 1fr;
       align-items: center;
     }
 
@@ -1989,19 +1988,19 @@
     }
 
     /* ===========================================================
-       O REGIME — definição + fluxo tributário (slide claro)
+       O REGIME — definição, fluxo e benefícios + quadro tributário
        =========================================================== */
     .reg {
       display: grid;
-      grid-template-columns: 1fr 1.02fr;
-      gap: 76px;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
       align-items: start;
     }
 
     .reg-def {
       font-family: 'Barlow', sans-serif;
       font-weight: 300;
-      font-size: 38px;
+      font-size: 34px;
       line-height: 1.24;
       letter-spacing: -.02em;
       color: var(--blue-deep);
@@ -2012,26 +2011,120 @@
       color: var(--blue);
     }
 
-    .reg-src {
-      margin-top: 20px;
+    .reg-sub {
+      margin-top: 16px;
+      font-size: 18px;
+      line-height: 1.5;
+      color: #3d4a63;
+    }
+
+    /* Importa → industrializa → exporta: trilho horizontal */
+    .reg-steps {
+      list-style: none;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 34px;
+    }
+
+    .reg-steps li {
+      position: relative;
+      padding-top: 32px;
+      font-size: 16px;
+      line-height: 1.45;
+      color: #3d4a63;
+    }
+
+    .reg-steps li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: -24px;
+      top: 7px;
+      height: 2px;
+      background: #4cac4b;
+    }
+
+    .reg-steps li:last-child::before {
+      right: 0;
+      background: linear-gradient(90deg, #4cac4b 0%, #d5dcea 100%);
+    }
+
+    .reg-steps li::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 16px;
+      height: 16px;
+      box-sizing: border-box;
+      border-radius: 50%;
+      border: 2px solid #3f9a3e;
+      background: #f9f9ff;
+      box-shadow: 0 0 0 5px rgba(76, 172, 75, .14);
+    }
+
+    .reg-steps span {
+      display: block;
+      margin-bottom: 6px;
       font-family: 'JetBrains Mono', monospace;
       font-size: 12.5px;
+      font-weight: 600;
+      letter-spacing: .14em;
+      color: #24651f;
+    }
+
+    .reg-steps b {
+      font-weight: 600;
+      color: var(--blue-deep);
+    }
+
+    .reg-ben {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      margin-top: 34px;
+    }
+
+    .reg-ben>div {
+      padding: 20px 22px 22px;
+      border-radius: 14px;
+      background: #fff;
+      border: 1px solid #e3e8f2;
+      border-left: 3px solid var(--blue);
+      box-shadow: 0 1px 2px rgba(36, 69, 130, .06);
+    }
+
+    .reg-ben-k {
+      margin-bottom: 6px;
+      font-family: 'Barlow', sans-serif;
+      font-weight: 600;
+      font-size: 21px;
+      color: var(--blue-deep);
+    }
+
+    .reg-ben-t {
+      font-size: 15.5px;
+      line-height: 1.5;
+      color: #3d4a63;
+    }
+
+    .reg-src {
+      margin-top: 26px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
       font-weight: 500;
-      letter-spacing: .16em;
+      line-height: 1.6;
+      letter-spacing: .12em;
       text-transform: uppercase;
       color: #5f6d87;
     }
 
-    .reg-law {
-      margin-top: 36px;
-      border-top: 1px solid #e3e8f2;
-    }
-
-    /* Âncora escura sobre o claro: o tratamento tributário é o
+    /* Âncora escura sobre o claro: o quadro tributário é o
        ponto focal do slide, como os StatCards do design system. */
-    .flow {
+    .tax {
       border-radius: 22px;
-      padding: 40px 44px 36px;
+      padding: 34px 40px 30px;
       background: linear-gradient(168deg, var(--blue) 0%, var(--blue-darkest) 100%);
       box-shadow: 0 2px 6px rgba(36, 69, 130, .18), 0 24px 48px rgba(36, 69, 130, .2);
       color: #fff;
@@ -2039,7 +2132,7 @@
       overflow: hidden;
     }
 
-    .flow::after {
+    .tax::after {
       content: '';
       position: absolute;
       right: -80px;
@@ -2051,126 +2144,136 @@
       pointer-events: none;
     }
 
-    .flow-l {
+    .tax-l {
+      margin-bottom: 10px;
       font-family: 'JetBrains Mono', monospace;
       font-size: 12px;
       font-weight: 600;
       letter-spacing: .2em;
       text-transform: uppercase;
-      color: rgba(255, 255, 255, .74);
-      margin-bottom: 28px;
+      color: #9fdc9e;
     }
 
-    .flow-step {
-      position: relative;
+    .tax-i {
+      margin-bottom: 8px;
+      font-size: 16px;
+      line-height: 1.5;
+      color: var(--w-60);
+    }
+
+    .tax-rows {
+      list-style: none;
+    }
+
+    .tax-rows li {
       display: grid;
-      grid-template-columns: 44px 1fr;
-      gap: 22px;
-    }
-
-    .flow-step:first-of-type {
-      padding-bottom: 30px;
-    }
-
-    /* Conector vertical entre as duas etapas */
-    .flow-step:first-of-type::after {
-      content: '';
-      position: absolute;
-      left: 21px;
-      top: 52px;
-      bottom: 4px;
-      width: 2px;
-      border-radius: 2px;
-      background: linear-gradient(180deg, rgba(126, 208, 125, .7) 0%, rgba(126, 208, 125, .15) 100%);
-    }
-
-    .flow-dot {
-      width: 44px;
-      height: 44px;
-      border-radius: 50%;
-      border: 1.5px solid rgba(134, 210, 133, .7);
-      color: #a8e0a7;
-      display: flex;
+      grid-template-columns: 140px 1fr auto;
       align-items: center;
-      justify-content: center;
+      gap: 16px;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, .1);
+    }
+
+    .tax-rows b {
+      font-family: 'Barlow', sans-serif;
+      font-weight: 600;
+      font-size: 22px;
+      color: #fff;
+    }
+
+    .tax-rows s {
+      font-size: 15px;
+      color: var(--w-45);
+      text-decoration-color: rgba(126, 208, 125, .7);
+      text-decoration-thickness: 1.5px;
+    }
+
+    .tax-rows em {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 5px 14px 5px 12px;
+      border-radius: 999px;
+      font-style: normal;
+      font-size: 14px;
+      font-weight: 600;
+      color: #a8e0a7;
+      background: rgba(76, 172, 75, .14);
+      border: 1px solid rgba(126, 208, 125, .38);
+    }
+
+    .tax-rows em::before {
+      content: '';
+      width: 9px;
+      height: 4px;
+      border-left: 2px solid currentColor;
+      border-bottom: 2px solid currentColor;
+      transform: translateY(-2px) rotate(-45deg);
+    }
+
+    .tax-stat {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 28px;
+      align-items: center;
+      margin-top: 22px;
+    }
+
+    .tax-n {
       font-family: 'Barlow', sans-serif;
       font-weight: 700;
-      font-size: 19px;
+      font-size: 72px;
+      line-height: .9;
+      letter-spacing: -.03em;
+      color: #fff;
+      white-space: nowrap;
     }
 
-    .flow-k {
+    .tax-n small {
+      display: block;
+      margin-bottom: 8px;
       font-family: 'JetBrains Mono', monospace;
       font-size: 12px;
       font-weight: 600;
-      letter-spacing: .16em;
+      letter-spacing: .18em;
       text-transform: uppercase;
-      color: #9fdc9e;
-      margin: 3px 0 9px;
+      color: var(--w-60);
     }
 
-    .flow-t {
-      font-family: 'Barlow', sans-serif;
-      font-weight: 400;
-      font-size: 27px;
-      line-height: 1.28;
-      letter-spacing: -.012em;
-      color: #fff;
-    }
-
-    .flow-t strong {
-      font-weight: 600;
-    }
-
-    .flow-badges {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 9px;
-      margin: 18px 0 12px;
-    }
-
-    .flow-b {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 13px;
+    .tax-n span {
+      margin-left: 8px;
+      font-size: 26px;
       font-weight: 500;
-      letter-spacing: .04em;
-      padding: 8px 15px;
-      border-radius: 999px;
-      background: rgba(255, 255, 255, .08);
-      border: 1px solid rgba(255, 255, 255, .22);
-      color: #fff;
+      letter-spacing: 0;
+      color: var(--w-60);
     }
 
-    .flow-r {
-      font-size: 17px;
-      line-height: 1.5;
-      color: rgba(255, 255, 255, .84);
-    }
-
-    .flow-r b {
-      color: #fff;
-      font-weight: 600;
-    }
-
-    .flow-src {
-      margin-top: 10px;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 12px;
-      letter-spacing: .06em;
-      color: rgba(255, 255, 255, .66);
-    }
-
-    .flow-note {
-      margin-top: 30px;
-      padding-top: 22px;
-      border-top: 1px solid rgba(255, 255, 255, .16);
+    .tax-t {
       font-size: 16px;
-      line-height: 1.58;
-      color: rgba(255, 255, 255, .82);
+      line-height: 1.5;
+      color: var(--w-80);
+    }
+
+    .tax-t span {
+      display: block;
+      margin-top: 8px;
+      font-size: 12.5px;
+      line-height: 1.5;
+      color: var(--w-45);
+    }
+
+    .tax-note {
+      margin-top: 20px;
+      padding-top: 16px;
+      border-top: 1px solid rgba(255, 255, 255, .14);
+      font-size: 14px;
+      line-height: 1.55;
+      color: var(--w-60);
       position: relative;
       z-index: 1;
     }
 
-    .flow-note b {
+    .tax-note b {
       color: #fff;
       font-weight: 600;
     }
@@ -2252,6 +2355,31 @@
       text-transform: uppercase;
       color: #8fd28e;
       white-space: nowrap;
+    }
+
+    /* Quebra do eixo: 1988 fica fora da escala de 2024–2026 */
+    .rail-brk {
+      position: absolute;
+      top: 50%;
+      width: 24px;
+      height: 18px;
+      margin: -9px 0 0 -12px;
+    }
+
+    .rail-brk::before,
+    .rail-brk::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 7px;
+      width: 2px;
+      height: 18px;
+      background: var(--w-45);
+      transform: skewX(-24deg);
+    }
+
+    .rail-brk::after {
+      left: 15px;
     }
 
     .rail-m {
@@ -2561,114 +2689,160 @@
     /* ===========================================================
        CARTEIRA — funil de etapas + frentes industriais (claro)
        =========================================================== */
-    .funil {
+    /* Carteira: quatro números, um por card */
+    .cpj {
       display: grid;
-      grid-template-columns: 1fr 1fr 1fr 1.4fr;
-      gap: 44px;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
     }
 
-    .fst {
-      position: relative;
+    .cpj-c {
       border-radius: 18px;
-      padding: 28px 28px 26px;
+      padding: 30px 30px 28px;
       background: var(--canvas);
       border: 1px solid #dfe5f1;
       box-shadow: 0 1px 2px rgba(36, 69, 130, .05), 0 6px 20px rgba(36, 69, 130, .05);
-      display: flex;
-      flex-direction: column;
     }
 
-    /* Chevron entre as etapas: o fluxo corre da prospecção à aprovação */
-    .fst:not(:last-child)::after {
-      content: '';
-      position: absolute;
-      right: -30px;
-      top: 50%;
-      width: 14px;
-      height: 14px;
-      margin-top: -7px;
-      border-top: 2px solid #9aa9c2;
-      border-right: 2px solid #9aa9c2;
-      transform: rotate(45deg);
+    .cpj-hi {
+      background: linear-gradient(168deg, var(--blue) 0%, var(--blue-darkest) 100%);
+      border-color: transparent;
+      box-shadow: 0 2px 6px rgba(36, 69, 130, .18), 0 18px 40px rgba(36, 69, 130, .18);
     }
 
-    .fst-open {
-      border-style: dashed;
-      border-color: #c3cde0;
-      background: rgba(255, 255, 255, .55);
-      box-shadow: none;
-    }
-
-    .fst-l {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 11.5px;
-      font-weight: 600;
-      letter-spacing: .16em;
-      text-transform: uppercase;
-      color: #5f6d87;
-      margin-bottom: 18px;
-    }
-
-    .fst-v {
+    .cpj-v {
       font-family: 'Barlow', sans-serif;
       font-weight: 700;
-      font-size: 72px;
+      font-size: 84px;
       line-height: .9;
       letter-spacing: -.04em;
       color: var(--blue);
       font-variant-numeric: tabular-nums;
     }
 
-    .fst-vt {
+    .cpj-t {
+      margin-top: 14px;
       font-family: 'Barlow', sans-serif;
       font-weight: 500;
-      font-size: 28px;
-      line-height: 1.18;
-      letter-spacing: -.01em;
+      font-size: 23px;
+      line-height: 1.22;
       color: var(--blue-deep);
     }
 
-    .fst-d {
-      margin-top: 14px;
-      font-size: 16.5px;
+    .cpj-n {
+      margin-top: 10px;
+      font-size: 15px;
       line-height: 1.5;
       color: var(--ink-soft);
     }
 
-    .fst-hi {
-      background: linear-gradient(168deg, var(--blue) 0%, var(--blue-darkest) 100%);
-      border-color: transparent;
-      box-shadow: 0 2px 6px rgba(36, 69, 130, .18), 0 18px 40px rgba(36, 69, 130, .18);
-    }
-
-    .fst-hi .fst-l {
-      color: rgba(255, 255, 255, .76);
-    }
-
-    .fst-hi .fst-v {
-      color: #fff;
-    }
-
-    .fst-names {
+    .cpj-sub {
       margin-top: 18px;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
+      padding-top: 16px;
+      border-top: 1px solid rgba(255, 255, 255, .18);
     }
 
-    .fst-names span {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 12.5px;
-      letter-spacing: .03em;
-      padding: 7px 13px;
-      border-radius: 999px;
-      background: rgba(255, 255, 255, .1);
-      border: 1px solid rgba(255, 255, 255, .24);
+    .cpj-sub .cpj-t {
+      margin-top: 0;
+      font-size: 19px;
+    }
+
+    .cpj-sub b {
+      margin-right: 4px;
+      font-size: 30px;
+      font-weight: 700;
+    }
+
+    .cpj-hi .cpj-v,
+    .cpj-hi .cpj-t {
       color: #fff;
+    }
+
+    .cpj-hi .cpj-n {
+      color: var(--w-60);
+    }
+
+    /* Corpo técnico: uma coluna por diretoria, uma linha por pessoa */
+    .eqp {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 48px;
+      align-items: start;
+    }
+
+    .eqp-h {
+      padding-bottom: 12px;
+      margin-bottom: 4px;
+      border-bottom: 2px solid var(--green);
+      font-family: 'Barlow', sans-serif;
+      font-weight: 600;
+      font-size: 22px;
+      color: var(--blue-deep);
+    }
+
+    .eqp-p {
+      display: grid;
+      grid-template-columns: 72px 1fr;
+      gap: 18px;
+      align-items: start;
+      padding: 16px 0;
+      border-bottom: 1px solid #e3e8f2;
+    }
+
+    .eqp-p:last-child {
+      border-bottom: none;
+    }
+
+    .eqp-f {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      object-fit: cover;
+      background: #dfe5f1;
+      box-shadow: 0 0 0 3px #fff, 0 2px 8px rgba(36, 69, 130, .14);
+    }
+
+    /* Sem foto ainda: iniciais no lugar */
+    .eqp-a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(168deg, var(--blue) 0%, var(--blue-darkest) 100%);
+      font-family: 'Barlow', sans-serif;
+      font-weight: 600;
+      font-size: 24px;
+      letter-spacing: .02em;
+      color: #fff;
+    }
+
+    .eqp-n {
+      margin-top: 4px;
+      font-family: 'Barlow', sans-serif;
+      font-weight: 600;
+      font-size: 21px;
+      line-height: 1.2;
+      color: var(--blue-deep);
+    }
+
+    .eqp-c {
+      margin-top: 5px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11.5px;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: #24651f;
+    }
+
+    .eqp-d {
+      margin-top: 6px;
+      font-size: 15px;
+      line-height: 1.45;
+      color: var(--ink-soft);
     }
 
     .frentes {
-      margin-top: 40px;
+      margin-top: 30px;
     }
 
     .sub-l {
@@ -3267,6 +3441,21 @@
     /* ===========================================================
        MEIO AMBIENTE — marcos do licenciamento
        =========================================================== */
+    /* Só os três marcos do licenciamento, em destaque */
+    .lic-3 {
+      grid-template-columns: repeat(3, 1fr) !important;
+      gap: 24px;
+    }
+
+    .lic-3 .marco {
+      min-height: 300px;
+      padding: 40px 40px 36px;
+    }
+
+    .lic-3 .marco-t {
+      font-size: 38px;
+    }
+
     .lic {
       display: grid;
       grid-template-columns: 1fr 1fr 1fr 1.55fr;
@@ -3368,10 +3557,9 @@
        =========================================================== */
     .end-k {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 20px;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 18px;
       margin: 44px 0 46px;
-      max-width: 1300px;
     }
 
     .end-k>div {
@@ -3623,7 +3811,7 @@
     .body>.msgs,
     .body>.g22,
     .body>.g4,
-    .body>.funil,
+    .body>.cpj,
     .body>.lic,
     .body>.st5,
     .body>.ficha,
@@ -3730,8 +3918,8 @@
 
     .lst-it {
       display: grid;
-      grid-template-columns: 30px 1fr;
-      gap: 8px;
+      grid-template-columns: 6px 1fr;
+      gap: 14px;
       padding: 8px 0;
       border-top: 1px solid #e6eaf3;
       font-family: 'Inter', sans-serif;
@@ -3746,12 +3934,11 @@
     }
 
     .lst-it i {
-      font-style: normal;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 12px;
-      color: #5f6d87;
-      padding-top: 3px;
-      font-variant-numeric: tabular-nums;
+      width: 6px;
+      height: 6px;
+      margin-top: 8px;
+      border-radius: 50%;
+      background: var(--green);
     }
 
     .lst-it .stt {
@@ -3771,15 +3958,16 @@
     }
 
     .lst-lg .lst-it {
-      grid-template-columns: 36px 1fr;
+      grid-template-columns: 7px 1fr;
       padding: 13px 0;
       font-size: 19px;
       line-height: 1.45;
     }
 
     .lst-lg .lst-it i {
-      font-size: 13px;
-      padding-top: 5px;
+      width: 7px;
+      height: 7px;
+      margin-top: 10px;
     }
 
 
@@ -4550,21 +4738,21 @@
                 </div>
                 <div class="pauta-row anim d3">
                   <span class="pauta-n">02</span>
-                  <span class="pauta-t">Sumário executivo
-                    <small>Mensagens-chave e panorama por diretoria</small></span>
+                  <span class="pauta-t">Diretorias e corpo técnico
+                    <small>Equipe técnica de cada diretoria</small></span>
                   <span></span>
                 </div>
                 <div class="pauta-row anim d4">
                   <span class="pauta-n">03</span>
                   <span class="pauta-t">Engenharia e TI
-                    <small>Projetos, infraestrutura, energia e licenciamento</small></span>
-                  <span class="rot-c"><b data-conta="deti">39</b><span>entregáveis</span></span>
+                    <small>Projetos, energia, planejamento e meio ambiente</small></span>
+                  <span></span>
                 </div>
                 <div class="pauta-row anim d4">
                   <span class="pauta-n">04</span>
                   <span class="pauta-t">Operações e Segurança Patrimonial
                     <small>Controle físico da área</small></span>
-                  <span class="rot-c"><b data-conta="ops">8</b><span>entregáveis</span></span>
+                  <span></span>
                 </div>
               </div>
               <div class="pauta-list">
@@ -4572,25 +4760,25 @@
                   <span class="pauta-n">05</span>
                   <span class="pauta-t">Comercial e Marketing
                     <small>Atração de investimentos e imagem institucional</small></span>
-                  <span class="rot-c"><b data-conta="dcm">68</b><span>entregáveis</span></span>
+                  <span></span>
                 </div>
                 <div class="pauta-row anim d5">
                   <span class="pauta-n">06</span>
                   <span class="pauta-t">Administrativo, Financeiro e RI
                     <small>Regularidade e funcionamento da companhia</small></span>
-                  <span class="rot-c"><b data-conta="daf">11</b><span>entregáveis</span></span>
+                  <span></span>
                 </div>
                 <div class="pauta-row anim d6">
                   <span class="pauta-n">07</span>
                   <span class="pauta-t">Jurídico
                     <small>Base normativa e segurança jurídica</small></span>
-                  <span class="rot-c"><b data-conta="jur">48</b><span>entregáveis</span></span>
+                  <span></span>
                 </div>
                 <div class="pauta-row anim d6">
                   <span class="pauta-n">08</span>
                   <span class="pauta-t">Assessoria da Presidência
                     <small>Agenda e articulação institucional</small></span>
-                  <span class="rot-c"><b data-conta="pres">23</b><span>entregáveis</span></span>
+                  <span></span>
                 </div>
               </div>
             </div>
@@ -4617,59 +4805,56 @@
           <div class="body body-top">
             <div class="reg">
               <div>
-                <p class="reg-def anim d3">Áreas de livre comércio com o exterior, destinadas a empresas que produzem
-                  bens ou prestam serviços para o <strong>mercado externo</strong>.</p>
-                <p class="reg-src anim d3">Zona primária para controle aduaneiro · MDIC</p>
+                <p class="reg-def anim d3">Uma Zona de Processamento de Exportação é uma área do território brasileiro
+                  que opera sob <strong>regras próprias, garantidas por lei federal</strong>.</p>
+                <p class="reg-sub anim d3">Não é uma zona franca de comércio: o foco é a indústria e os serviços voltados
+                  para a exportação.</p>
 
-                <div class="reg-law anim d4">
-                  <div class="kv">
-                    <span class="kv-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                        stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z" />
-                        <path d="M14 2v6h6M9 13h6M9 17h6" />
-                      </svg></span>
-                    <span class="kv-t">Regime definido pela <b>Lei nº 11.508/2007</b> e modernizado pela <b>Lei nº
-                        14.184/2021</b>.</span>
+                <ol class="reg-steps anim d4">
+                  <li><span>01</span><b>Importa</b> insumos e equipamentos com tributos suspensos</li>
+                  <li><span>02</span><b>Industrializa</b> dentro da zona</li>
+                  <li><span>03</span><b>Exporta</b> o produto final: a suspensão se converte em isenção ou alíquota zero
+                  </li>
+                </ol>
+
+                <div class="reg-ben anim d5">
+                  <div>
+                    <p class="reg-ben-k">Liberdade cambial</p>
+                    <p class="reg-ben-t">Permite manter no exterior 100% das divisas obtidas com a exportação.</p>
                   </div>
-                  <div class="kv">
-                    <span class="kv-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                        stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M12 3 4 7v5c0 5 3.4 8.3 8 9 4.6-.7 8-4 8-9V7l-8-4Z" />
-                      </svg></span>
-                    <span class="kv-t">Supervisionado pelo <b>CZPE</b>, Conselho Nacional das Zonas de Processamento de
-                      Exportação, vinculado ao <b>MDIC</b>.</span>
+                  <div>
+                    <p class="reg-ben-k">Segurança jurídica</p>
+                    <p class="reg-ben-t">Benefícios garantidos por lei federal, estáveis por 20 anos e prorrogáveis por
+                      igual período.</p>
                   </div>
                 </div>
+
+                <p class="reg-src anim d5">Lei nº 11.508/2007 · Lei nº 14.184/2021 · Supervisão do CZPE, vinculado ao MDIC
+                </p>
               </div>
 
-              <div class="flow anim d5">
-                <p class="flow-l">Tratamento tributário das empresas instaladas</p>
+              <div class="tax anim d5">
+                <p class="tax-l">O que a ZPE elimina</p>
+                <p class="tax-i">Os cinco tributos que encarecem a importação convencional:</p>
 
-                <div class="flow-step">
-                  <span class="flow-dot">1</span>
-                  <div>
-                    <p class="flow-k">Na aquisição</p>
-                    <p class="flow-t">Máquinas, equipamentos e insumos</p>
-                    <div class="flow-badges">
-                      <span class="flow-b">Imposto de Importação</span>
-                      <span class="flow-b">IPI</span>
-                      <span class="flow-b">AFRMM</span>
-                    </div>
-                    <p class="flow-r">com <b>suspensão</b> dos tributos.</p>
-                  </div>
+                <ul class="tax-rows">
+                  <li><b>II</b><s>Alíquota cheia conforme TEC (0% a 35%)</s><em>Suspenso</em></li>
+                  <li><b>IPI</b><s>Alíquota cheia conforme TIPI</s><em>Suspenso</em></li>
+                  <li><b>PIS/Cofins</b><s>Alíquota cheia na importação</s><em>Suspenso</em></li>
+                  <li><b>AFRMM</b><s>25% sobre o frete marítimo</s><em>Suspenso</em></li>
+                  <li><b>ICMS</b><s>Variável conforme o estado (17% a 19%)</s><em>Isento</em></li>
+                </ul>
+
+                <div class="tax-stat">
+                  <p class="tax-n"><small>Até</small>US$ 6<span>mi</span></p>
+                  <p class="tax-t">de economia tributária por ano para operações que importam US$ 15 milhões em insumos
+                    e equipamentos.
+                    <span>Estudo Tributário Comparado da CZPE · 11.760 simulações · 20 estados · 147 mercadorias</span>
+                  </p>
                 </div>
 
-                <div class="flow-step">
-                  <span class="flow-dot">2</span>
-                  <div>
-                    <p class="flow-k">Na exportação do produto final</p>
-                    <p class="flow-t">A suspensão se converte em <strong>isenção ou alíquota zero</strong></p>
-                    <p class="flow-src">Lei nº 11.508/2007, art. 6º-A</p>
-                  </div>
-                </div>
-
-                <p class="flow-note">Com a reforma tributária (<b>Lei Complementar nº 214/2025</b>), PIS e Cofins saíram
-                  desse rol e passam ao novo modelo de tributação do consumo.</p>
+                <p class="tax-note">ICMS isento pelo Convênio ICMS 99/1998. Com a reforma tributária (<b>Lei
+                    Complementar nº 214/2025</b>), PIS e Cofins passam ao novo modelo de tributação do consumo.</p>
               </div>
             </div>
           </div>
@@ -4709,7 +4894,7 @@
               <div class="kpi anim d4">
                 <p class="kpi-l">Administração</p>
                 <p class="kpi-tv">Companhia Administradora da ZPE-MA</p>
-                <p class="kpi-d">Subsidiária da Investe Maranhão, Agência de Desenvolvimento do Estado do Maranhão S.A.
+                <p class="kpi-d">Sociedade de economia mista, subsidiária da Investe Maranhão, Agência de Desenvolvimento do Estado do Maranhão S.A.
                 </p>
               </div>
               <div class="kpi anim d4">
@@ -4722,36 +4907,43 @@
             <div class="anim d5" style="margin-top:34px">
               <p class="sub-l">Trajetória</p>
               <div class="rail">
-                <div class="rail-track"></div>
-                <div class="rail-period" data-grow style="left:61.07%;width:36.91%"><span>Período do relatório ·
+                <div class="rail-track" style="right:94%"></div>
+                <span class="rail-brk" style="left:7.5%"></span>
+                <div class="rail-track" style="left:9%"></div>
+                <div class="rail-period" data-grow style="left:65.74%;width:32.48%"><span>Período do relatório ·
                     nov/2025 a set/2026</span></div>
 
-                <div class="rail-m up" style="left:2.95%">
+                <div class="rail-m dn" style="left:1.2%">
                   <span class="rail-x"></span>
-                  <div class="rail-b"><span class="rail-d">22 mai 2024</span><span class="rail-t">CZPE aprova a
+                  <div class="rail-b" style="width:310px"><span class="rail-d">29 jul 1988</span><span class="rail-t">Decreto-Lei nº 2.452 cria o
+                      regime das ZPEs no Brasil, no governo José Sarney</span></div>
+                </div>
+                <div class="rail-m up" style="left:14.6%">
+                  <span class="rail-x"></span>
+                  <div class="rail-b" style="width:190px"><span class="rail-d">22 mai 2024</span><span class="rail-t">CZPE aprova a
                       proposta da ZPE</span></div>
                 </div>
-                <div class="rail-m dn" style="left:11.38%">
+                <div class="rail-m dn" style="left:22.01%">
                   <span class="rail-x"></span>
                   <div class="rail-b"><span class="rail-d">7 ago 2024</span><span class="rail-t">Decreto Federal nº
                       12.131 cria a ZPE Maranhão</span></div>
                 </div>
-                <div class="rail-m up" style="left:19.13%">
+                <div class="rail-m up" style="left:28.83%">
                   <span class="rail-x"></span>
                   <div class="rail-b"><span class="rail-d">out 2024</span><span class="rail-t">Assembleia autoriza a
                       Companhia; Oil Group aprovada no CZPE</span></div>
                 </div>
-                <div class="rail-m dn" style="left:35.9%">
+                <div class="rail-m dn" style="left:43.59%">
                   <span class="rail-x"></span>
                   <div class="rail-b"><span class="rail-d">mar 2025</span><span class="rail-t">Instalação da Oil Group
                       autorizada</span></div>
                 </div>
-                <div class="rail-m up" style="left:59.4%">
+                <div class="rail-m up" style="left:64.27%">
                   <span class="rail-x"></span>
                   <div class="rail-b"><span class="rail-d">out 2025</span><span class="rail-t">Rakel Dourado Murad
                       assume a presidência</span></div>
                 </div>
-                <div class="rail-m dn end" style="left:93.86%">
+                <div class="rail-m dn end" style="left:94.6%">
                   <span class="rail-x"></span>
                   <div class="rail-b"><span class="rail-d">25 ago 2026</span><span class="rail-t">4Wood Biotech, H2X e
                       Hydeas aprovados no CZPE</span></div>
@@ -4772,8 +4964,10 @@
       <section class="slide s-dark dots grain" data-bloco="Contexto">
         <div class="pad">
           <p class="eyebrow anim d1">Capítulo 01 · Situação no CZPE</p>
-          <h2 class="title anim d2" style="margin:18px 0 32px;font-size:50px">Quatro projetos industriais <strong
-              style="font-weight:700">aprovados</strong></h2>
+          <h2 class="title anim d2" style="margin:18px 0 10px;font-size:50px">4 projetos industriais <strong
+              style="font-weight:700">aprovados</strong> na ZPE e no CZPE</h2>
+          <p class="anim d2" style="margin-bottom:24px;font-size:19px;color:var(--w-60)">CZPE: Conselho Nacional das Zonas de
+            Processamento de Exportação</p>
 
           <div class="body">
             <div class="czpe">
@@ -4848,32 +5042,32 @@
           <img src="assets/images/world_dotted.svg" alt="">
         </div>
         <div class="pad pad-center">
-          <p class="eyebrow anim d1">Capítulo 01 · Carteira de projetos</p>
-          <h2 class="title anim d2" style="margin:18px 0 32px;font-size:50px">Uma carteira em <strong
-              style="font-weight:700">oito frentes</strong></h2>
+          <p class="eyebrow anim d1">Capítulo 01 · Projetos em oito frentes</p>
+          <h2 class="title anim d2" style="margin:18px 0 32px;font-size:50px">Carteira de <strong
+              style="font-weight:700">projetos</strong></h2>
 
           <div class="body body-top">
-            <div class="funil">
-              <div class="fst fst-open anim d3">
-                <p class="fst-l">Em análise ou prospecção</p>
-                <p class="fst-vt">Demais projetos da carteira</p>
+            <div class="cpj">
+              <div class="cpj-c anim d3">
+                <p class="cpj-v">12</p>
+                <p class="cpj-t">projetos recebidos na ZPE MA</p>
               </div>
-              <div class="fst anim d3">
-                <p class="fst-l">Em complementação</p>
-                <p class="fst-v">5</p>
-                <p class="fst-d">Projetos em complementação com os proponentes.</p>
+              <div class="cpj-c anim d3">
+                <p class="cpj-v">5</p>
+                <p class="cpj-t">projetos aprovados na ZPE MA</p>
               </div>
-              <div class="fst anim d4">
-                <p class="fst-l">Protocolado no CZPE</p>
-                <p class="fst-v">1</p>
-                <p class="fst-d">Florestas Brasileiras, aceita pela ZPE.</p>
-              </div>
-              <div class="fst fst-hi anim d4">
-                <p class="fst-l">Aprovados no CZPE</p>
-                <p class="fst-v">4</p>
-                <div class="fst-names">
-                  <span>Oil Group</span><span>4Wood Biotech</span><span>H2X</span><span>Hydeas</span>
+              <div class="cpj-c cpj-hi anim d4">
+                <p class="cpj-v">4</p>
+                <p class="cpj-t">projetos aprovados no CZPE</p>
+                <p class="cpj-n">Oil Group · 4Wood Biotech · H2X · Hydeas</p>
+                <div class="cpj-sub">
+                  <p class="cpj-t"><b>1</b> projeto submetido<br>para análise no CZPE</p>
+                  <p class="cpj-n">Florestas Brasileiras</p>
                 </div>
+              </div>
+              <div class="cpj-c anim d4">
+                <p class="cpj-v">7</p>
+                <p class="cpj-t">projetos em análise na ZPE MA</p>
               </div>
             </div>
 
@@ -4899,96 +5093,108 @@
       </section>
 
       <!-- ===================================================
-           SLIDE 7 — SUMÁRIO EXECUTIVO
+           CORPO TÉCNICO (1 DE 2)
            =================================================== -->
-      <section class="slide s-dark dots grain" data-bloco="Sumário">
-        <div class="darkmap darkmap-wide" aria-hidden="true">
-          <span class="dm-base"><img src="assets/images/world_dotted_raster.png" alt="" loading="lazy"></span>
-          <span class="dm-glow dm-glow-a"></span>
-          <span class="dm-glow dm-glow-b"></span>
-        </div>
-        <div class="pad pad-center">
-          <p class="eyebrow anim d1">Capítulo 02 · Sumário executivo</p>
-          <h2 class="title anim d2" style="margin:18px 0 12px;font-size:50px">Seis mensagens do <strong
-              style="font-weight:700">período</strong></h2>
-          <p class="lede anim d2" style="margin-bottom:30px;font-size:19px;max-width:78ch">A ZPE Maranhão teve quatro
-            projetos industriais aprovados no CZPE, estruturou sua base normativa e de governança e passou a se
-            apresentar ao mercado com identidade própria.</p>
+      <section class="slide s-light grain grain-light" data-bloco="Corpo técnico">
+        <div class="pad">
+          <p class="eyebrow anim d1">Capítulo 02 · Corpo técnico · 1 de 2</p>
+          <h2 class="title anim d2" style="margin:18px 0 30px;font-size:50px">Diretorias e <strong
+              style="font-weight:700">corpo técnico</strong></h2>
 
-          <div class="body body-top">
-            <div class="msgs">
-              <div class="msg anim d3">
-                <span class="msg-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
-                    stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M3 17l6-6 4 4 8-8" />
-                    <path d="M14 7h7v7" />
-                  </svg></span>
+          <div class="body">
+            <div class="eqp">
+              <div class="eqp-col anim d3">
+                <p class="eqp-h">Presidência</p>
                 <div>
-                  <p class="msg-t">Atração de investimentos</p>
-                  <p class="msg-d">Quatro projetos aprovados no CZPE, com <b>cerca de R$ 31,2 bilhões</b> previstos.
-                    Florestas Brasileiras protocolada; outros cinco em complementação.</p>
+                  <div class="eqp-p">
+                    <img class="eqp-f" src="assets/equipe/rakel-murad.jpg" alt="Rakel Dourado Murad">
+                    <div>
+                      <p class="eqp-n">Rakel Dourado Murad</p>
+                      <p class="eqp-c">Diretor Geral – Presidente</p>
+                      <p class="eqp-d">Advogada, mestre em Direito Administrativo e Constitucional, especialista em Administração de Empresas</p>
+                    </div>
+                  </div>
+                  <div class="eqp-p">
+                    <img class="eqp-f" src="assets/equipe/liana-baker.jpg" alt="Liana Baker">
+                    <div>
+                      <p class="eqp-n">Liana Baker</p>
+                      <p class="eqp-c">Assessor Técnico I</p>
+                      <p class="eqp-d">Advogada</p>
+                    </div>
+                  </div>
+                  <div class="eqp-p">
+                    <span class="eqp-f eqp-a" aria-hidden="true">SL</span>
+                    <div>
+                      <p class="eqp-n">Shayene Lopes</p>
+                      <p class="eqp-c">Assessor Técnico I</p>
+                      <p class="eqp-d">Engenheira Ambiental</p>
+                    </div>
+                  </div>
+                  <div class="eqp-p">
+                    <img class="eqp-f" src="assets/equipe/jean-carlos.jpg" alt="Jean Carlos Amorim">
+                    <div>
+                      <p class="eqp-n">Jean Carlos Amorim</p>
+                      <p class="eqp-c">Motorista</p>
+                    </div>
+                  </div>
                 </div>
               </div>
-              <div class="msg anim d3">
-                <span class="msg-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
-                    stroke-linecap="round" stroke-linejoin="round">
-                    <circle cx="11" cy="11" r="7" />
-                    <path d="m20 20-3.5-3.5" />
-                  </svg></span>
+              <div class="eqp-col anim d4">
+                <p class="eqp-h">Engenharia e Tecnologia da Informação</p>
                 <div>
-                  <p class="msg-t">Análise de projetos</p>
-                  <p class="msg-d">Análises <b>técnica, comercial e jurídica</b>, com cartas de pendências aos
-                    proponentes e um Guia para Elaboração de Projetos Industriais.</p>
+                  <div class="eqp-p">
+                    <img class="eqp-f" src="assets/equipe/willinton-burak.jpg" alt="Willinton Burak">
+                    <div>
+                      <p class="eqp-n">Willinton Burak</p>
+                      <p class="eqp-c">Diretor de Engenharia</p>
+                      <p class="eqp-d">Engenheiro Civil, especialista em Lean Construction, em Gestão de Projetos na Construção Civil e em Engenharia Rodoviária; técnico em Eletromecânica</p>
+                    </div>
+                  </div>
+                  <div class="eqp-p">
+                    <img class="eqp-f" src="assets/equipe/gustavo-figueiredo.jpg" alt="Gustavo Figueiredo">
+                    <div>
+                      <p class="eqp-n">Gustavo Figueiredo</p>
+                      <p class="eqp-c">Engenheiro – Nível 3</p>
+                      <p class="eqp-d">Engenheiro Eletricista, mestre em Energia e Ambiente</p>
+                    </div>
+                  </div>
+                  <div class="eqp-p">
+                    <img class="eqp-f" src="assets/equipe/roniele-aquino.jpg" alt="Roniele Aquino">
+                    <div>
+                      <p class="eqp-n">Roniele Aquino</p>
+                      <p class="eqp-c">Assessor Técnico II</p>
+                      <p class="eqp-d">Engenheira Civil</p>
+                    </div>
+                  </div>
+                  <div class="eqp-p">
+                    <img class="eqp-f" src="assets/equipe/larissa-borcoi.jpg" alt="Larissa Borçoi">
+                    <div>
+                      <p class="eqp-n">Larissa Borçoi</p>
+                      <p class="eqp-c">Assessor Técnico I</p>
+                      <p class="eqp-d">Engenheira Ambiental, especialista em Gerenciamento de Projetos</p>
+                    </div>
+                  </div>
                 </div>
               </div>
-              <div class="msg anim d4">
-                <span class="msg-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
-                    stroke-linecap="round" stroke-linejoin="round">
-                    <ellipse cx="12" cy="6" rx="8" ry="3" />
-                    <path d="M4 6v6c0 1.7 3.6 3 8 3s8-1.3 8-3V6" />
-                    <path d="M4 12v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6" />
-                  </svg></span>
+              <div class="eqp-col anim d5">
+                <p class="eqp-h">Operações e Segurança Patrimonial</p>
                 <div>
-                  <p class="msg-t">Bases econômicas definidas</p>
-                  <p class="msg-d">Tabela de Serviços, valores de reserva e cessão de áreas, projeção de receitas,
-                    Plano de Zoneamento e <b>Curva de Carga de 120 meses</b>.</p>
-                </div>
-              </div>
-              <div class="msg anim d4">
-                <span class="msg-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
-                    stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M3 21h18" />
-                    <path d="M5 21V7l7-4 7 4v14" />
-                    <path d="M9 21v-6h6v6" />
-                  </svg></span>
-                <div>
-                  <p class="msg-t">Implantação física avançando</p>
-                  <p class="msg-d">Fase 1 locada, projetos executivos revisados, <b>início das obras comprovado ao
-                      CZPE</b> e área sob controle de segurança.</p>
-                </div>
-              </div>
-              <div class="msg anim d5">
-                <span class="msg-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
-                    stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z" />
-                    <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12" />
-                  </svg></span>
-                <div>
-                  <p class="msg-t">Licenciamento ambiental</p>
-                  <p class="msg-d"><b>Licença Prévia, Licença de Instalação e anuência do IPHAN</b> obtidas, e Termo
-                    de Referência do alfandegamento elaborado.</p>
-                </div>
-              </div>
-              <div class="msg anim d5">
-                <span class="msg-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
-                    stroke-linecap="round" stroke-linejoin="round">
-                    <circle cx="12" cy="12" r="9" />
-                    <path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18" />
-                  </svg></span>
-                <div>
-                  <p class="msg-t">Posicionamento institucional</p>
-                  <p class="msg-d">Novo site, book institucional em inglês, pitch imersivo e apresentação em <b>quatro
-                      idiomas</b>, além da operação da visita técnica do CZPE.</p>
+                  <div class="eqp-p">
+                    <img class="eqp-f" src="assets/equipe/rubem-teixeira.jpg" alt="Rubem Teixeira">
+                    <div>
+                      <p class="eqp-n">Rubem Teixeira</p>
+                      <p class="eqp-c">Assessor Técnico II</p>
+                      <p class="eqp-d">Bacharel em Direito, especialista em Segurança Pública</p>
+                    </div>
+                  </div>
+                  <div class="eqp-p">
+                    <span class="eqp-f eqp-a" aria-hidden="true">JA</span>
+                    <div>
+                      <p class="eqp-n">Jesse Araújo</p>
+                      <p class="eqp-c">Analista II</p>
+                      <p class="eqp-d">Advogado, especialista em Segurança Pública</p>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -4996,88 +5202,120 @@
         </div>
 
         <div class="foot anim d6">
-          <span class="foot-note">Relatório Gerencial, seção 2.</span>
+          <span class="foot-note">Quadro de funcionários da ZPE Maranhão.</span>
         </div>
       </section>
 
       <!-- ===================================================
-           SLIDE 8 — PANORAMA POR DIRETORIA
+           CORPO TÉCNICO (2 DE 2)
            =================================================== -->
-      <section class="slide s-light grain grain-light" data-bloco="Sumário">
-        <div class="lightmap lightmap-wide" aria-hidden="true">
-          <img src="assets/images/world_dotted.svg" alt="">
-        </div>
+      <section class="slide s-light grain grain-light" data-bloco="Corpo técnico">
         <div class="pad">
-          <div class="pauta-head" style="margin-bottom:30px">
-            <div>
-              <p class="eyebrow anim d1">Capítulo 02 · Panorama por diretoria</p>
-              <h2 class="title anim d2" style="margin-top:18px;font-size:50px"><span
-                  data-conta="diretorias">174</span> entregáveis em <strong style="font-weight:700">cinco
-                  diretorias</strong></h2>
-            </div>
-          </div>
+          <p class="eyebrow anim d1">Capítulo 02 · Corpo técnico · 2 de 2</p>
+          <h2 class="title anim d2" style="margin:18px 0 30px;font-size:50px">Diretorias e <strong
+              style="font-weight:700">corpo técnico</strong></h2>
 
           <div class="body">
-            <div class="eq">
-              <div class="eq-row eq-head anim d3">
-                <span>Diretoria</span><span>Responsáveis</span><span>Entregáveis</span>
-              </div>
-              <div class="eq-row anim d3">
-                <p class="eq-d"><small>Capítulo 03</small>Engenharia e Tecnologia da Informação</p>
-                <p class="eq-p">Willinton Burak · Gustavo Figueiredo · Roniele Aquino · Larissa Borçoi</p>
-                <div class="eq-bar">
-                  <div class="track"><div class="fill" data-wde="deti"></div></div>
-                  <span class="eq-v" data-conta="deti">39</span>
+            <div class="eqp">
+              <div class="eqp-col anim d3">
+                <p class="eqp-h">Comercial e Marketing</p>
+                <div>
+                  <div class="eqp-p">
+                    <img class="eqp-f" src="assets/equipe/eduardo-neves.jpg" alt="Eduardo Neves">
+                    <div>
+                      <p class="eqp-n">Eduardo Neves</p>
+                      <p class="eqp-c">Diretor Comercial</p>
+                      <p class="eqp-d">Economista</p>
+                    </div>
+                  </div>
+                  <div class="eqp-p">
+                    <img class="eqp-f" src="assets/equipe/frederico-brandt.jpg" alt="Frederico Brandt">
+                    <div>
+                      <p class="eqp-n">Frederico Brandt</p>
+                      <p class="eqp-c">Assessor Técnico I</p>
+                      <p class="eqp-d">Engenheiro Eletricista, especialista em Marketing Estratégico, com formação em IA e Transformação Digital aplicadas à Gestão Pública</p>
+                    </div>
+                  </div>
+                  <div class="eqp-p">
+                    <img class="eqp-f" src="assets/equipe/wagner-alves.jpg" alt="Wagner Alves">
+                    <div>
+                      <p class="eqp-n">Wagner Alves</p>
+                      <p class="eqp-c">Assessor Técnico III</p>
+                      <p class="eqp-d">Economista e Administrador</p>
+                    </div>
+                  </div>
+                  <div class="eqp-p">
+                    <img class="eqp-f" src="assets/equipe/ruth-feitosa.jpg" alt="Ruth Feitosa">
+                    <div>
+                      <p class="eqp-n">Ruth Feitosa</p>
+                      <p class="eqp-c">Técnica Especializada</p>
+                      <p class="eqp-d">Comunicação Social – Publicidade e Propaganda</p>
+                    </div>
+                  </div>
                 </div>
               </div>
-              <div class="eq-row anim d4">
-                <p class="eq-d"><small>Capítulo 04</small>Operações e Segurança Patrimonial</p>
-                <p class="eq-p">Rubem Teixeira · Jesse</p>
-                <div class="eq-bar">
-                  <div class="track"><div class="fill" data-wde="ops"></div></div>
-                  <span class="eq-v" data-conta="ops">8</span>
+              <div class="eqp-col anim d4">
+                <p class="eqp-h">Administrativo, Financeiro e RI</p>
+                <div>
+                  <div class="eqp-p">
+                    <img class="eqp-f" src="assets/equipe/lisley-amorim.jpg" alt="Lisley Amorim">
+                    <div>
+                      <p class="eqp-n">Lisley Amorim</p>
+                      <p class="eqp-c">Diretor Administrativo Financeiro</p>
+                      <p class="eqp-d">Contadora, especialista em Finanças Corporativas e Controladoria</p>
+                    </div>
+                  </div>
+                  <div class="eqp-p">
+                    <img class="eqp-f" src="assets/equipe/ana-claudia-correa.jpg" alt="Ana Cláudia Corrêa">
+                    <div>
+                      <p class="eqp-n">Ana Cláudia Corrêa</p>
+                    </div>
+                  </div>
                 </div>
               </div>
-              <div class="eq-row anim d4">
-                <p class="eq-d"><small>Capítulo 05</small>Comercial e Marketing</p>
-                <p class="eq-p">Frederico Brandt · Wagner Alves · Ruth Feitosa · Eduardo Neves</p>
-                <div class="eq-bar">
-                  <div class="track"><div class="fill" data-wde="dcm"></div></div>
-                  <span class="eq-v" data-conta="dcm">68</span>
-                </div>
-              </div>
-              <div class="eq-row anim d5">
-                <p class="eq-d"><small>Capítulo 06</small>Administrativa, Financeira e de Relacionamento com
-                  Investidores</p>
-                <p class="eq-p">Lisley Amorim · Claudia Correia</p>
-                <div class="eq-bar">
-                  <div class="track"><div class="fill" data-wde="daf"></div></div>
-                  <span class="eq-v" data-conta="daf">11</span>
-                </div>
-              </div>
-              <div class="eq-row anim d5">
-                <p class="eq-d"><small>Capítulo 07</small>Jurídico</p>
-                <p class="eq-p">Cristiano Duailibe · Pablo Cassas · Victor Vidigal · Alina Xavier</p>
-                <div class="eq-bar">
-                  <div class="track"><div class="fill" data-wde="jur"></div></div>
-                  <span class="eq-v" data-conta="jur">48</span>
-                </div>
-              </div>
-              <div class="eq-row eq-pres anim d6">
-                <p class="eq-d"><small>Capítulo 08</small>Assessoria da Presidência</p>
-                <p class="eq-p">Rakel Murad · Liana Baker · Jean Carlos</p>
-                <div class="eq-bar">
-                  <div class="track"><div class="fill" data-wde="pres"></div></div>
-                  <span class="eq-v" data-conta="pres">23</span>
+              <div class="eqp-col anim d5">
+                <p class="eqp-h">Jurídico</p>
+                <div>
+                  <div class="eqp-p">
+                    <span class="eqp-f eqp-a" aria-hidden="true">CD</span>
+                    <div>
+                      <p class="eqp-n">Cristiano Duailibe</p>
+                      <p class="eqp-c">Assessor Técnico I</p>
+                      <p class="eqp-d">Advogado</p>
+                    </div>
+                  </div>
+                  <div class="eqp-p">
+                    <img class="eqp-f" src="assets/equipe/pablo-cassas.jpg" alt="Pablo Cassas">
+                    <div>
+                      <p class="eqp-n">Pablo Cassas</p>
+                      <p class="eqp-c">Assessor Jurídico</p>
+                      <p class="eqp-d">Advogado</p>
+                    </div>
+                  </div>
+                  <div class="eqp-p">
+                    <img class="eqp-f" src="assets/equipe/victor-vidigal.jpg" alt="Victor Vidigal">
+                    <div>
+                      <p class="eqp-n">Victor Vidigal</p>
+                      <p class="eqp-c">Assessor de Compliance</p>
+                      <p class="eqp-d">Advogado</p>
+                    </div>
+                  </div>
+                  <div class="eqp-p">
+                    <span class="eqp-f eqp-a" aria-hidden="true">AX</span>
+                    <div>
+                      <p class="eqp-n">Alina Xavier</p>
+                      <p class="eqp-c">Coordenadora de Contratos</p>
+                      <p class="eqp-d">Contadora</p>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
 
-        <div class="foot anim d7">
-          <span class="foot-note">Relatório Gerencial, seções 3 a 9. A Assessoria da Presidência é contada à parte das
-            diretorias.</span>
+        <div class="foot anim d6">
+          <span class="foot-note">Quadro de funcionários da ZPE Maranhão.</span>
         </div>
       </section>
 
@@ -5095,20 +5333,12 @@
           <div>
             <p class="div-item anim d1">Capítulo 03</p>
             <h2 class="chap-title anim d2">Engenharia e <strong>Tecnologia da Informação</strong></h2>
-            <p class="chap-lede anim d3">Atuou em três frentes: <b>análise técnica dos projetos industriais</b>,
+            <p class="chap-lede anim d3">Atuação nas frentes de <b>análise técnica dos projetos industriais</b>,
               <b>planejamento da infraestrutura</b> e <b>licenciamento ambiental</b> da ZPE.</p>
             <div class="chap-team anim d4">
               <span class="chap-k">Responsáveis</span>
               <span class="chap-names">Willinton Burak<i>·</i>Gustavo Figueiredo<i>·</i>Roniele Aquino<i>·</i>Larissa
                 Borçoi</span>
-            </div>
-          </div>
-          <div class="chap-r anim d3">
-            <p class="chap-n" data-conta="deti" data-anima>39</p>
-            <p class="chap-nl">Entregáveis no período</p>
-            <div class="chap-split">
-              <div><b data-conta="deti-eng">20</b><span>Engenharia</span></div>
-              <div><b data-conta="deti-ma">19</b><span>Meio ambiente</span></div>
             </div>
           </div>
         </div>
@@ -5131,48 +5361,48 @@
           <div class="body">
             <div class="g22">
               <div class="grp anim d3">
-                <div class="grp-h"><span class="grp-n" data-conta="eng-proj">8</span><p class="grp-t">Análise de
+                <div class="grp-h"><p class="grp-t">Análise de
                     projetos industriais</p></div>
                 <div class="chips">
-                  <span class="chip">H2X<em>e-metanol</em></span>
                   <span class="chip">Hydeas<em>HBI</em></span>
-                  <span class="chip">Florestas Brasileiras<em>babaçu</em></span>
+                  <span class="chip">Oil Group</span>
+                  <span class="chip">4Wood Biotech</span>
+                  <span class="chip">H2X<em>e-metanol</em></span>
+                  <span class="chip">Strongwell</span>
                   <span class="chip">Lumen<em>data center</em></span>
                   <span class="chip">SL Energia<em>amônia</em></span>
+                  <span class="chip">Florestas Brasileiras<em>babaçu</em></span>
+                  <span class="chip">Superaço</span>
                   <span class="chip">Grupo Jacaré</span>
-                  <span class="chip">Biofabrica BSF</span>
-                  <span class="chip">Strongwell</span>
+                  <span class="chip">BSF São Luís</span>
+                  <span class="chip">Pavitecnica</span>
                 </div>
               </div>
               <div class="grp anim d3">
-                <div class="grp-h"><span class="grp-n" data-conta="eng-fase1">3</span><p class="grp-t">Fase 1 e projetos
-                    executivos</p></div>
+                <div class="grp-h"><p class="grp-t">Pareceres técnicos de projetos</p></div>
                 <ul class="grp-l">
-                  <li>Implantação da Fase 1 consolidada: locação dos prédios administrativos, da área alfandegada e dos
-                    prédios de apoio</li>
-                  <li>Parecer técnico sobre a revisão dos projetos executivos de empresa terceirizada</li>
-                  <li>Revisão dos projetos executivos enviados para a Vale</li>
+                  <li>Fase 1 consolidada: projetos executivos e arquitetônicos da implantação e da área alfandegada</li>
+                  <li>Parecer técnico de revisão dos projetos executivos elaborados por empresa terceira</li>
+                  <li>Revisão técnica dos projetos executivos enviados à Vale para o recurso da área administrativa</li>
                 </ul>
               </div>
               <div class="grp anim d4">
-                <div class="grp-h"><span class="grp-n" data-conta="eng-energia">4</span><p class="grp-t">Energia</p>
-                </div>
+                <div class="grp-h"><p class="grp-t">Estudos de energia</p></div>
                 <ul class="grp-l">
-                  <li>Curva de Carga de 120 meses (demanda Equatorial/MA e SIN)</li>
-                  <li>Análise de viabilidade da GEP/SE à ZPE/MA</li>
-                  <li>Cadastro da ZPE no ONS</li>
-                  <li>Apresentação sobre energia elétrica no Maranhão</li>
+                  <li>Curva de carga de 120 meses: demanda de potência dos projetos nos próximos 10 anos</li>
+                  <li>Viabilidade técnica da GEP/SE na ZPE/MA</li>
+                  <li>Cadastro da ZPE Maranhão no ONS</li>
+                  <li>Estudo das características elétricas do Maranhão</li>
                 </ul>
               </div>
               <div class="grp anim d4">
-                <div class="grp-h"><span class="grp-n" data-conta="eng-plan">5</span><p class="grp-t">Planejamento e
-                    instrumentos</p></div>
+                <div class="grp-h"><p class="grp-t">Planejamento e estudos</p></div>
                 <ul class="grp-l">
-                  <li>Plano de Zoneamento da ZPE Maranhão</li>
-                  <li>Guia para Elaboração de Projetos Industriais</li>
-                  <li>Indicadores de Projetos Industriais</li>
-                  <li>Planta georreferenciada com memorial descritivo para a H2X</li>
-                  <li>Parecer técnico dos Books 1 e 2 da Tese de Água Industrial</li>
+                  <li>Plano de Zoneamento: delimitação dos setores industriais</li>
+                  <li>Guia para elaboração dos projetos industriais</li>
+                  <li>Indicadores para padronizar as análises técnicas dos projetos</li>
+                  <li>Planta georreferenciada com memorial descritivo para as empresas aprovadas no CZPE</li>
+                  <li>Parecer técnico dos Books 1 e 2 da Tese de Água Industrial (Alvarez &amp; Marsal)</li>
                 </ul>
               </div>
             </div>
@@ -5185,20 +5415,44 @@
       </section>
 
       <!-- ===================================================
+           CAPA — GERÊNCIA DE MEIO AMBIENTE E PLANEJAMENTO
+           =================================================== -->
+      <section class="slide s-deep grain" data-bloco="Engenharia e TI">
+        <div class="enc-bg">
+          <video class="slide-video" muted loop playsinline preload="none"
+                 poster="assets/videos/video_enc_poster.jpg" aria-hidden="true" tabindex="-1"
+                 data-src-webm="assets/videos/video_enc_web.webm"
+                 data-src-mp4="assets/videos/video_enc_web.mp4"></video>
+        </div>
+        <div class="chap">
+          <div>
+            <p class="div-item anim d1">Capítulo 03 · Meio ambiente</p>
+            <h2 class="chap-title anim d2" style="max-width:none">Gerência de <strong>Meio Ambiente<br>e Planejamento</strong></h2>
+            <p class="chap-lede anim d3">Atuação nas frentes de <b>licenciamento ambiental</b>, <b>due diligence</b>,
+              <b>programas ambientais</b>, <b>condicionantes</b>, <b>anuência do IPHAN</b> e <b>alfandegamento</b>.</p>
+            <div class="chap-team anim d4">
+              <span class="chap-k">Responsáveis</span>
+              <span class="chap-names">Larissa Borçoi<i>·</i>Liana Baker</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================================================
            SLIDE 11 — MEIO AMBIENTE
            =================================================== -->
       <section class="slide s-light grain grain-light" data-bloco="Engenharia e TI" data-lista="ma">
         <div class="lightmap lightmap-wide" aria-hidden="true">
           <img src="assets/images/world_dotted.svg" alt="">
         </div>
-        <div class="pad">
+        <div class="pad pad-center">
           <p class="eyebrow anim d1">Capítulo 03 · Meio ambiente</p>
           <h2 class="title anim d2" style="margin:18px 0 28px;font-size:50px">Licenças obtidas, <strong
               style="font-weight:700">alfandegamento</strong> preparado</h2>
 
-          <div class="body">
-            <p class="sub-l anim d3">Licenciamento ambiental <b data-conta="ma-lic">7</b></p>
-            <div class="lic">
+          <div class="body body-top">
+            <p class="sub-l anim d3">Licenciamento ambiental</p>
+            <div class="lic lic-3">
               <div class="marco anim d3">
                 <span class="marco-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"
                     stroke-linecap="round" stroke-linejoin="round">
@@ -5229,53 +5483,6 @@
                   <p class="marco-s">Obtida</p>
                 </div>
               </div>
-              <div class="lic-steps anim d5">
-                <ul class="grp-l">
-                  <li>Resposta técnica à carta de complementação da SEMA para a Licença Prévia</li>
-                  <li>Due diligence junto aos órgãos ambientais</li>
-                  <li>Programas ambientais para a Licença de Instalação</li>
-                  <li>Termo de Referência para as condicionantes da LI</li>
-                </ul>
-              </div>
-            </div>
-
-            <div class="g4" style="margin-top:22px">
-              <div class="grp anim d5">
-                <div class="grp-h"><span class="grp-n" data-conta="ma-alf">2</span><p class="grp-t">Alfandegamento</p>
-                </div>
-                <ul class="grp-l">
-                  <li>Relatório técnico de necessidades</li>
-                  <li>Termo de Referência do alfandegamento</li>
-                </ul>
-              </div>
-              <div class="grp anim d5">
-                <div class="grp-h"><span class="grp-n" data-conta="ma-resex">3</span><p class="grp-t">RESEX e
-                    articulação</p></div>
-                <ul class="grp-l">
-                  <li>Parecer técnico sobre a RESEX Tauá-Mirim</li>
-                  <li>Conceito de RESEX e implicações para as licenças</li>
-                  <li>Apresentações governamentais ambientais</li>
-                </ul>
-              </div>
-              <div class="grp anim d6">
-                <div class="grp-h"><span class="grp-n" data-conta="ma-plan">5</span><p class="grp-t">Planejamento e
-                    projetos</p></div>
-                <ul class="grp-l">
-                  <li>Business Plan: análise técnica</li>
-                  <li>Plano de Alocação de Área: contribuição</li>
-                  <li>Revisão dos projetos de engenharia</li>
-                  <li>Fluxo de análise dos projetos</li>
-                  <li>Zoneamento da ZPE</li>
-                </ul>
-              </div>
-              <div class="grp anim d6">
-                <div class="grp-h"><span class="grp-n" data-conta="ma-nuvem">2</span><p class="grp-t">Plataforma em
-                    nuvem</p></div>
-                <ul class="grp-l">
-                  <li>Parecer técnico para aquisição de licenças</li>
-                  <li>Termo de Referência da aquisição</li>
-                </ul>
-              </div>
             </div>
           </div>
         </div>
@@ -5303,16 +5510,7 @@
               receber obras e investidores.</p>
             <div class="chap-team anim d4">
               <span class="chap-k">Responsáveis</span>
-              <span class="chap-names">Rubem Teixeira<i>·</i>Jesse</span>
-            </div>
-          </div>
-          <div class="chap-r anim d3">
-            <p class="chap-n" data-conta="ops" data-anima>8</p>
-            <p class="chap-nl">Entregáveis no período</p>
-            <div class="chap-split">
-              <div><b data-conta="ops-seg">4</b><span>Segurança da área</span></div>
-              <div><b data-conta="ops-obras">2</b><span>Obras e visitas</span></div>
-              <div><b data-conta="ops-entorno">2</b><span>Entorno e articulação</span></div>
+              <span class="chap-names">Rubem Teixeira<i>·</i>Jesse Araújo</span>
             </div>
           </div>
         </div>
@@ -5405,14 +5603,6 @@
                 Neves</span>
             </div>
           </div>
-          <div class="chap-r anim d3">
-            <p class="chap-n" data-conta="dcm" data-anima>68</p>
-            <p class="chap-nl">Entregáveis no período</p>
-            <div class="chap-split">
-              <div><b data-conta="dcm-com">43</b><span>Comercial</span></div>
-              <div><b data-conta="dcm-mkt">25</b><span>Marketing</span></div>
-            </div>
-          </div>
         </div>
       </section>
 
@@ -5433,7 +5623,7 @@
           <div class="body">
             <div class="g22" style="grid-template-columns:1.32fr 1fr">
               <div class="grp anim d3">
-                <div class="grp-h"><span class="grp-n" data-conta="com-par">15</span><p class="grp-t">Pareceres e
+                <div class="grp-h"><p class="grp-t">Pareceres e
                     cartas aos proponentes</p></div>
                 <div class="pp-leg">
                   <span><i></i>Parecer e carta de pendências</span>
@@ -5474,7 +5664,7 @@
                     CZPE. Os três foram aprovados em <strong>25 de agosto de 2026</strong>.</p>
                 </div>
                 <div class="grp anim d5" style="flex:1">
-                  <div class="grp-h"><span class="grp-n" data-conta="com-czpe">5</span><p class="grp-t">Portfólio e
+                  <div class="grp-h"><p class="grp-t">Portfólio e
                       CZPE</p></div>
                   <ul class="grp-l">
                     <li>Documentação de 4Wood, H2X e Hydeas encaminhada ao CZPE</li>
@@ -5497,7 +5687,7 @@
       <!-- ===================================================
            SLIDE 16 — COMERCIAL: BASES ECONÔMICAS E PROSPECÇÃO
            =================================================== -->
-      <section class="slide s-light grain grain-light" data-bloco="Comercial e Marketing" data-lista="com">
+      <section class="slide s-light grain grain-light" data-bloco="Comercial e Marketing">
         <div class="lightmap lightmap-wide" aria-hidden="true">
           <img src="assets/images/world_dotted.svg" alt="">
         </div>
@@ -5510,7 +5700,7 @@
             <div class="g22" style="grid-template-columns:1fr 1.42fr">
               <div style="display:flex;flex-direction:column;gap:22px">
                 <div class="grp anim d3">
-                  <div class="grp-h"><span class="grp-n" data-conta="com-bases">4</span><p class="grp-t">Bases
+                  <div class="grp-h"><p class="grp-t">Bases
                       econômicas da operação</p></div>
                   <ul class="grp-l">
                     <li>Tabela de Serviços da ZPE Maranhão</li>
@@ -5520,7 +5710,7 @@
                   </ul>
                 </div>
                 <div class="grp anim d4" style="flex:1">
-                  <div class="grp-h"><span class="grp-n" data-conta="com-plano">2</span><p class="grp-t">Planejamento
+                  <div class="grp-h"><p class="grp-t">Planejamento
                     </p></div>
                   <ul class="grp-l">
                     <li>Plano de Prospecção e Atração de Investimentos</li>
@@ -5530,9 +5720,9 @@
               </div>
 
               <div class="grp anim d4">
-                <div class="grp-h"><span class="grp-n" data-conta="com-eventos+com-visitas+com-neg">17</span><p
+                <div class="grp-h"><p
                     class="grp-t">Agenda de prospecção e relacionamento</p></div>
-                <p class="grp-sub">Eventos e fóruns<b data-conta="com-eventos">5</b></p>
+                <p class="grp-sub">Eventos e fóruns</p>
                 <div class="chips">
                   <span class="chip">EXPOIMP<em>atendimento no stand</em></span>
                   <span class="chip">EXPOIMP<em>prospecção de empresas</em></span>
@@ -5540,7 +5730,7 @@
                   <span class="chip">EXPOEMA<em>alinhamento</em></span>
                   <span class="chip">SAGRIMA<em>reunião sobre a EXPOIMP</em></span>
                 </div>
-                <p class="grp-sub">Visitas a empresas<b data-conta="com-visitas">6</b></p>
+                <p class="grp-sub">Visitas a empresas</p>
                 <div class="chips">
                   <span class="chip">Suzano</span>
                   <span class="chip">EM Vidros</span>
@@ -5549,7 +5739,7 @@
                   <span class="chip">Maranhão Couros</span>
                   <span class="chip">Couros Santa Maria</span>
                 </div>
-                <p class="grp-sub">Negócios e relacionamento<b data-conta="com-neg">6</b></p>
+                <p class="grp-sub">Negócios e relacionamento</p>
                 <ul class="grp-l cols2">
                   <li>Pré-reserva de área da Oil Group</li>
                   <li>Projeto de Açaí Liofilizado</li>
@@ -5565,6 +5755,77 @@
 
         <div class="foot anim d6">
           <span class="foot-note">Relatório Gerencial, seção 6.2.</span>
+        </div>
+      </section>
+
+      <!-- ===================================================
+           COMERCIAL — RESUMO GERAL DOS PROJETOS
+           =================================================== -->
+      <section class="slide s-dark grain" data-bloco="Comercial e Marketing" data-lista="com">
+        <div class="darkmap darkmap-wide" aria-hidden="true">
+          <span class="dm-base"><img src="assets/images/world_dotted_raster.png" alt="" loading="lazy"></span>
+          <span class="dm-glow dm-glow-a"></span>
+          <span class="dm-glow dm-glow-b"></span>
+        </div>
+        <div class="pad">
+          <p class="eyebrow anim d1">Capítulo 05 · Comercial</p>
+          <h2 class="title anim d2" style="margin:18px 0 32px;font-size:50px">Resumo geral dos <strong
+              style="font-weight:700">projetos</strong></h2>
+
+          <div class="body">
+            <div class="czpe">
+              <div class="hero anim d3">
+                <video class="slide-video hero-video" muted loop playsinline preload="none"
+                       poster="assets/videos/video_card_poster.jpg" aria-hidden="true" tabindex="-1"
+                       data-src-webm="assets/videos/video_card_web.webm"
+                       data-src-mp4="assets/videos/video_card_web.mp4"></video>
+                <p class="hero-l">Investimentos privados totais</p>
+                <p class="hero-big"><em>R$</em><span data-alvo="32.855" data-dec="3">32,855</span><small>bi</small></p>
+                <p class="hero-d">Soma dos projetos da carteira da ZPE Maranhão.</p>
+                <div class="hero-split">
+                  <div>
+                    <p class="hero-s-v">12</p>
+                    <p class="hero-s-l">Projetos<br>no total</p>
+                  </div>
+                  <div>
+                    <p class="hero-s-v">876,02 ha</p>
+                    <p class="hero-s-l">Área total prevista<br>8.760.200 m²</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="inv">
+                <div class="inv-row anim d3">
+                  <div class="inv-top">
+                    <span class="inv-n">Total de empregos previstos</span>
+                    <span class="inv-v" data-alvo="33739">33.739</span>
+                  </div>
+                  <div class="track"><div class="fill" data-w="100"></div></div>
+                  <p class="inv-meta">13.986 diretos e 19.753 indiretos.</p>
+                </div>
+                <div class="inv-row anim d4">
+                  <div class="inv-top">
+                    <span class="inv-n">Empregos na implantação</span>
+                    <span class="inv-v" data-alvo="25546">25.546</span>
+                  </div>
+                  <div class="track"><div class="fill" data-w="75.72"></div></div>
+                  <p class="inv-meta">12.273 diretos e 13.273 indiretos.</p>
+                </div>
+                <div class="inv-row anim d5">
+                  <div class="inv-top">
+                    <span class="inv-n">Empregos na operação</span>
+                    <span class="inv-v" data-alvo="8193">8.193</span>
+                  </div>
+                  <div class="track"><div class="fill" data-w="24.28"></div></div>
+                  <p class="inv-meta">1.713 diretos e 6.480 indiretos.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="foot anim d6">
+          <span class="foot-note">Resumo geral dos projetos da ZPE Maranhão (atualizado).</span>
         </div>
       </section>
 
@@ -5608,7 +5869,7 @@
 
             <div class="g22" style="grid-template-columns:1.45fr 1fr 1fr;gap:20px;margin-top:24px">
               <div class="grp anim d4">
-                <div class="grp-h"><span class="grp-n" data-conta="mkt-plat">11</span><p class="grp-t">Plataformas e
+                <div class="grp-h"><p class="grp-t">Plataformas e
                     materiais</p></div>
                 <ul class="grp-l cols2">
                   <li>Plano de Marketing 2026</li>
@@ -5625,7 +5886,7 @@
                 </ul>
               </div>
               <div class="grp anim d5">
-                <div class="grp-h"><span class="grp-n" data-conta="mkt-eventos">6</span><p class="grp-t">Eventos e
+                <div class="grp-h"><p class="grp-t">Eventos e
                     Presidência</p></div>
                 <ul class="grp-l">
                   <li>Visita técnica do CZPE (18 e 19/05)</li>
@@ -5637,14 +5898,14 @@
                 </ul>
               </div>
               <div class="grp anim d5">
-                <div class="grp-h"><span class="grp-n" data-conta="mkt-redes+mkt-rotinas">8</span><p
+                <div class="grp-h"><p
                     class="grp-t">Redes e rotinas</p></div>
                 <ul class="grp-l">
                   <li>Gestão das redes sociais</li>
                   <li>Cobertura de eventos e missões</li>
                   <li>Selo de verificação do Instagram</li>
                 </ul>
-                <p class="grp-sub">Rotinas contínuas<b data-conta="mkt-rotinas">5</b></p>
+                <p class="grp-sub">Rotinas contínuas</p>
                 <div class="chips">
                   <span class="chip">Apresentações</span>
                   <span class="chip">Site e sistemas</span>
@@ -5684,15 +5945,6 @@
               <span class="chap-names">Lisley Amorim<i>·</i>Claudia Correia</span>
             </div>
           </div>
-          <div class="chap-r anim d3">
-            <p class="chap-n" data-conta="daf" data-anima>11</p>
-            <p class="chap-nl">Entregáveis no período</p>
-            <div class="chap-split">
-              <div><b data-conta="daf-cont">4</b><span>Contabilidade e obrigações</span></div>
-              <div><b data-conta="daf-proc+daf-gest">4</b><span>Processos e gestão</span></div>
-              <div><b data-conta="daf-atos">3</b><span>Atos societários</span></div>
-            </div>
-          </div>
         </div>
       </section>
 
@@ -5725,7 +5977,7 @@
 
               <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
                 <div class="grp anim d4" style="grid-column:1 / -1">
-                  <div class="grp-h"><span class="grp-n" data-conta="daf-cont">4</span><p class="grp-t">Contabilidade e
+                  <div class="grp-h"><p class="grp-t">Contabilidade e
                       obrigações acessórias de 2025</p></div>
                   <ul class="grp-l cols2">
                     <li>Demonstrações Contábeis e Prestação de Contas</li>
@@ -5735,7 +5987,7 @@
                   </ul>
                 </div>
                 <div class="grp anim d5">
-                  <div class="grp-h"><span class="grp-n" data-conta="daf-gest">2</span><p class="grp-t">Gestão
+                  <div class="grp-h"><p class="grp-t">Gestão
                       administrativa</p></div>
                   <ul class="grp-l">
                     <li>Política de Vale Alimentação (SEI nº 2026.63201.00179)</li>
@@ -5743,7 +5995,7 @@
                   </ul>
                 </div>
                 <div class="grp anim d5">
-                  <div class="grp-h"><span class="grp-n" data-conta="daf-atos">3</span><p class="grp-t">Atas
+                  <div class="grp-h"><p class="grp-t">Atas
                       autenticadas na JUCEMA</p></div>
                   <ul class="grp-l">
                     <li>Entrada da Presidente Rakel Murad</li>
@@ -5783,16 +6035,6 @@
                 Xavier</span>
             </div>
           </div>
-          <div class="chap-r anim d3">
-            <p class="chap-n" data-conta="jur" data-anima>48</p>
-            <p class="chap-nl">Entregáveis no período</p>
-            <div class="chap-split">
-              <div><b data-conta="jur-proj+jur-soc+jur-infra+jur-contr">22</b><span>Pareceres</span></div>
-              <div><b data-conta="jur-norm">8</b><span>Base normativa e transparência</span></div>
-              <div><b data-conta="jur-ofic+jur-tr+jur-acord+jur-pess">18</b><span>Ofícios, contratos e pessoas</span>
-              </div>
-            </div>
-          </div>
         </div>
       </section>
 
@@ -5807,14 +6049,13 @@
         </div>
         <div class="pad pad-center">
           <p class="eyebrow anim d1">Capítulo 07 · Pareceres</p>
-          <h2 class="title anim d2" style="margin:18px 0 28px;font-size:50px"><span
-              data-conta="jur-proj+jur-soc+jur-infra+jur-contr">22</span> pareceres para as <strong
+          <h2 class="title anim d2" style="margin:18px 0 28px;font-size:50px">Pareceres para as <strong
               style="font-weight:700">decisões da ZPE</strong></h2>
 
           <div class="body body-top">
             <div class="g22" style="grid-template-columns:1fr 1.22fr">
               <div class="grp anim d3">
-                <div class="grp-h"><span class="grp-n" data-conta="jur-proj">9</span><p class="grp-t">Projetos
+                <div class="grp-h"><p class="grp-t">Projetos
                     industriais</p></div>
                 <div class="pp-list">
                   <div class="pp-row"><span class="pp-n">Hydeas <small>HBI verde</small></span><span class="pp-p"><span
@@ -5833,9 +6074,9 @@
               </div>
 
               <div class="grp anim d4">
-                <div class="grp-h"><span class="grp-n" data-conta="jur-soc+jur-infra+jur-contr">13</span><p
+                <div class="grp-h"><p
                     class="grp-t">Temas estratégicos</p></div>
-                <p class="grp-sub">Societário e governança<b data-conta="jur-soc">5</b></p>
+                <p class="grp-sub">Societário e governança</p>
                 <ul class="grp-l cols2">
                   <li>Capital social e capital autorizado</li>
                   <li>Competência para aumento de capital</li>
@@ -5843,14 +6084,14 @@
                   <li>Elegibilidade: Diretor de Operações</li>
                   <li>Elegibilidade: Diretor Adm., Financeiro e RI</li>
                 </ul>
-                <p class="grp-sub">Infraestrutura e território<b data-conta="jur-infra">4</b></p>
+                <p class="grp-sub">Infraestrutura e território</p>
                 <ul class="grp-l cols2">
                   <li>Alfandegamento: competências e prazos</li>
                   <li>Saneamento intramuros: água e esgoto</li>
                   <li>RESEX e atividades econômicas</li>
                   <li>Tarifa de água de imóvel do Estado</li>
                 </ul>
-                <p class="grp-sub">Contratações e institucional<b data-conta="jur-contr">4</b></p>
+                <p class="grp-sub">Contratações e institucional</p>
                 <ul class="grp-l cols2">
                   <li>Microsoft 365 Business Standard</li>
                   <li>Adesão a Atas de Registro de Preços</li>
@@ -5882,7 +6123,7 @@
           <div class="body body-top">
             <div class="g22" style="grid-template-columns:1fr 1fr 1fr;gap:20px">
               <div class="grp anim d3">
-                <div class="grp-h"><span class="grp-n" data-conta="jur-norm">8</span><p class="grp-t">Base normativa e
+                <div class="grp-h"><p class="grp-t">Base normativa e
                     transparência</p></div>
                 <ul class="grp-l">
                   <li>Minuta de Regimento Interno</li>
@@ -5896,7 +6137,7 @@
                 </ul>
               </div>
               <div class="grp anim d4">
-                <div class="grp-h"><span class="grp-n" data-conta="jur-ofic">7</span><p class="grp-t">Ofícios e
+                <div class="grp-h"><p class="grp-t">Ofícios e
                     notificações</p></div>
                 <ul class="grp-l">
                   <li>Ofício ao CZPE: início das obras e alteração do projeto</li>
@@ -5907,16 +6148,16 @@
                 </ul>
               </div>
               <div class="grp anim d5">
-                <div class="grp-h"><span class="grp-n" data-conta="jur-tr+jur-pess">8</span><p class="grp-t">Contratações
+                <div class="grp-h"><p class="grp-t">Contratações
                     e pessoas</p></div>
-                <p class="grp-sub">Termos de Referência revisados<b data-conta="jur-tr">4</b></p>
+                <p class="grp-sub">Termos de Referência revisados</p>
                 <div class="chips">
                   <span class="chip">Licenciamento das obras</span>
                   <span class="chip">Licença Microsoft</span>
                   <span class="chip">Consultoria Panamá</span>
                   <span class="chip">Consultoria China<em>Canton Fair</em></span>
                 </div>
-                <p class="grp-sub">Gestão de pessoas<b data-conta="jur-pess">4</b></p>
+                <p class="grp-sub">Gestão de pessoas</p>
                 <div class="chips">
                   <span class="chip">Contrato de trabalho</span>
                   <span class="chip">Escala anual de férias</span>
@@ -5927,7 +6168,7 @@
             </div>
 
             <div class="grp grp-row anim d6" style="margin-top:20px">
-              <div class="grp-h"><span class="grp-n" data-conta="jur-acord">3</span><p class="grp-t">Acordos</p></div>
+              <div class="grp-h"><p class="grp-t">Acordos</p></div>
               <ul class="grp-l grp-inline">
                 <li>ACT entre ZPE MA e ZPE PI (minuta)</li>
                 <li>NDA com a ALADA</li>
@@ -5963,15 +6204,6 @@
               <span class="chap-names">Rakel Murad<i>·</i>Liana Baker<i>·</i>Jean Carlos</span>
             </div>
           </div>
-          <div class="chap-r anim d3">
-            <p class="chap-n" data-conta="pres" data-anima>23</p>
-            <p class="chap-nl">Entregáveis no período</p>
-            <div class="chap-split">
-              <div><b data-conta="pres-agenda">11</b><span>Agenda e representação</span></div>
-              <div><b data-conta="pres-gov">6</b><span>Governança e articulação</span></div>
-              <div><b data-conta="pres-rel+pres-exp">6</b><span>Relacionamento e expediente</span></div>
-            </div>
-          </div>
         </div>
       </section>
 
@@ -5990,7 +6222,7 @@
           <div class="body body-top">
             <div class="g22" style="grid-template-columns:1.3fr 1fr;gap:22px">
               <div class="grp anim d3">
-                <div class="grp-h"><span class="grp-n" data-conta="pres-agenda">11</span><p class="grp-t">Agenda e
+                <div class="grp-h"><p class="grp-t">Agenda e
                     representação institucional</p></div>
                 <ul class="grp-l">
                   <li>Coordenação da agenda institucional</li>
@@ -6008,7 +6240,7 @@
               </div>
               <div style="display:flex;flex-direction:column;gap:22px">
                 <div class="grp anim d4">
-                  <div class="grp-h"><span class="grp-n" data-conta="pres-gov">6</span><p class="grp-t">Governança e
+                  <div class="grp-h"><p class="grp-t">Governança e
                       articulação</p></div>
                   <ul class="grp-l">
                     <li>Pautas e subsídios para o CONSAD</li>
@@ -6020,7 +6252,7 @@
                   </ul>
                 </div>
                 <div class="grp anim d5" style="flex:1">
-                  <div class="grp-h"><span class="grp-n" data-conta="pres-rel+pres-exp">6</span><p
+                  <div class="grp-h"><p
                       class="grp-t">Relacionamento e expediente</p></div>
                   <div class="chips">
                     <span class="chip">Visitas de investidores</span>
@@ -6056,20 +6288,28 @@
 
           <div class="end-k">
             <div class="anim d3">
-              <p class="end-k-v">4</p>
-              <p class="end-k-d">Projetos industriais aprovados no CZPE</p>
+              <p class="end-k-v">12</p>
+              <p class="end-k-d">Projetos recebidos na ZPE MA</p>
             </div>
             <div class="anim d3">
+              <p class="end-k-v">5</p>
+              <p class="end-k-d">Projetos aprovados na ZPE MA</p>
+            </div>
+            <div class="anim d3">
+              <p class="end-k-v">4</p>
+              <p class="end-k-d">Aprovados no CZPE e 1 submetido para análise</p>
+            </div>
+            <div class="anim d4">
+              <p class="end-k-v">7</p>
+              <p class="end-k-d">Projetos em análise na ZPE MA</p>
+            </div>
+            <div class="anim d4">
               <p class="end-k-v"><em>R$</em>31,2<small>bi</small></p>
-              <p class="end-k-d">Em investimentos previstos</p>
+              <p class="end-k-d">Investimentos dos projetos aprovados no CZPE</p>
             </div>
             <div class="anim d4">
               <p class="end-k-v">LP<small> e </small>LI</p>
               <p class="end-k-d">Licenças obtidas, além da anuência do IPHAN</p>
-            </div>
-            <div class="anim d4">
-              <p class="end-k-v" data-conta="diretorias">174</p>
-              <p class="end-k-d">Entregáveis das cinco diretorias</p>
             </div>
           </div>
 
@@ -6222,38 +6462,42 @@
             id: 'deti-eng', nome: 'Engenharia', grupos: [
               {
                 id: 'eng-proj', nome: 'Análise de projetos industriais', itens: [
-                  'Análise do projeto industrial H2X: e-metanol',
                   'Análise do projeto industrial Hydeas: HBI',
-                  'Análise do projeto industrial Florestas Brasileiras: derivados de babaçu',
+                  'Análise do projeto industrial Oil Group',
+                  'Análise do projeto industrial 4Wood Biotech',
+                  'Análise do projeto industrial H2X: e-metanol',
+                  'Análise do projeto industrial Strongwell',
                   'Análise do projeto industrial Lumen: data center',
                   'Análise do projeto industrial SL Energia: produção de amônia',
+                  'Análise do projeto industrial Florestas Brasileiras: derivados de babaçu',
+                  'Análise do projeto industrial Superaço',
                   'Análise do projeto industrial Grupo Jacaré',
-                  'Análise do projeto industrial Biofabrica BSF',
-                  'Análise do projeto industrial Strongwell'
+                  'Análise do projeto industrial BSF São Luís',
+                  'Análise do projeto industrial Pavitecnica'
                 ]
               },
               {
-                id: 'eng-fase1', nome: 'Fase 1 e projetos executivos', itens: [
-                  'Consolidação da implantação da Fase 1 da ZPE Maranhão: locação dos prédios administrativos, da área alfandegada e dos prédios de apoio',
-                  'Emissão de parecer técnico referente à revisão dos projetos executivos elaborados por empresa terceirizada',
-                  'Revisão dos projetos executivos enviados para a Vale'
+                id: 'eng-fase1', nome: 'Pareceres técnicos de projetos', itens: [
+                  'Fase 1 consolidada: análise dos projetos executivos e arquitetônicos da implantação da ZPE Maranhão juntamente com a área alfandegada',
+                  'Parecer técnico de revisão dos projetos executivos elaborados por empresa terceira',
+                  'Revisão técnica de todos os projetos executivos enviados para a Vale para obtenção do recurso para construção da área administrativa da ZPE'
                 ]
               },
               {
-                id: 'eng-energia', nome: 'Energia', itens: [
-                  'Curva de Carga de 120 meses da ZPE (demanda Equatorial/MA e demanda SIN)',
-                  'Análise de viabilidade da GEP/SE à ZPE/MA',
-                  'Cadastro da ZPE no ONS',
-                  'Apresentação sobre energia elétrica no Estado do Maranhão'
+                id: 'eng-energia', nome: 'Estudos de energia', itens: [
+                  'Curva de carga de 120 meses: levantamento de carga da demanda de potência elétrica dos próximos 10 anos dos projetos da ZPE Maranhão',
+                  'Análise de viabilidade da GEP/SE à ZPE/MA: realização do estudo de viabilidade técnica para prospecção do projeto da GEP/Sergipe para o Maranhão',
+                  'Cadastro da ZPE Maranhão no Operador Nacional do Sistema Elétrico (ONS)',
+                  'Estudo das características elétricas do Maranhão'
                 ]
               },
               {
-                id: 'eng-plan', nome: 'Planejamento e instrumentos', itens: [
-                  'Elaboração do Plano de Zoneamento da ZPE Maranhão',
-                  'Guia para Elaboração de Projetos Industriais',
-                  'Elaboração dos Indicadores de Projetos Industriais',
-                  'Elaboração de planta georreferenciada com memorial descritivo para a empresa H2X',
-                  'Elaboração do Parecer Técnico dos Books 1 e 2 da Tese de Água Industrial (ZPE e DISAL)'
+                id: 'eng-plan', nome: 'Planejamento e estudos', itens: [
+                  'Plano de Zoneamento da ZPE Maranhão: delimitação dos setores industriais',
+                  'Guia para elaboração dos projetos industriais',
+                  'Definição de indicadores para padronização das análises técnicas dos projetos industriais',
+                  'Planta georreferenciada com memorial descritivo para as empresas aprovadas no CZPE',
+                  'Parecer técnico sobre os Books 1 e 2 da Tese de Água Industrial (ZPE e DISAL), elaborados pela Alvarez & Marsal'
                 ]
               }
             ]
@@ -6706,10 +6950,10 @@
     const TITULOS = [
       'Capa', 'Roteiro',
       'O regime ZPE', 'A ZPE Maranhão', 'Situação no CZPE', 'Carteira de projetos',
-      'Sumário executivo', 'Panorama por diretoria',
-      'Engenharia e TI', 'Engenharia', 'Meio ambiente',
+      'Corpo técnico (1 de 2)', 'Corpo técnico (2 de 2)',
+      'Engenharia e TI', 'Engenharia', 'Gerência de Meio Ambiente e Planejamento', 'Meio ambiente',
       'Operações e Segurança Patrimonial', 'Operações: entregáveis',
-      'Comercial e Marketing', 'Comercial: projetos e CZPE', 'Comercial: bases e prospecção', 'Marketing',
+      'Comercial e Marketing', 'Comercial: projetos e CZPE', 'Comercial: bases e prospecção', 'Resumo geral dos projetos', 'Marketing',
       'Administrativo, Financeiro e RI', 'Administrativo e financeiro: entregáveis',
       'Jurídico', 'Jurídico: pareceres', 'Jurídico: normas, ofícios e acordos',
       'Assessoria da Presidência', 'Presidência: entregáveis',
@@ -6727,10 +6971,9 @@
        alguma página passar a transbordar.
        ========================================================= */
     const PAGINAS_LISTA = [
-      { apos: 'eng', cap: 'deti', titulo: 'Engenharia e TI: <strong>Engenharia</strong>', idx: 'Lista: Engenharia', grupos: 'deti-eng', cols: 2, secao: 'seção 4.1' },
-      { apos: 'ma', cap: 'deti', titulo: 'Engenharia e TI: <strong>Meio ambiente</strong>', idx: 'Lista: Meio ambiente', grupos: 'deti-ma', cols: 2, secao: 'seção 4.2' },
-      { apos: 'ops', cap: 'ops', titulo: 'Operações e <strong>Segurança Patrimonial</strong>', idx: 'Lista: Operações', grupos: 'ops-all', cols: 2, lg: true, secao: 'seção 5' },
-      { apos: 'com', cap: 'dcm', titulo: 'Comercial: <strong>pareceres e portfólio</strong>', idx: 'Lista: Comercial, pareceres', grupos: ['com-par', 'com-czpe'], cols: 2, secao: 'seção 6.2' },
+      { apos: 'eng', cap: 'deti', titulo: 'Engenharia: <strong>projetos e pareceres</strong>', idx: 'Lista: Engenharia, projetos e pareceres', grupos: ['eng-proj', 'eng-fase1'], cols: 2, lg: true, secao: 'seção 4.1' },
+      { apos: 'eng', cap: 'deti', titulo: 'Engenharia: <strong>energia e planejamento</strong>', idx: 'Lista: Engenharia, energia e planejamento', grupos: ['eng-energia', 'eng-plan'], cols: 2, lg: true, secao: 'seção 4.1' },
+      { apos: 'ma', cap: 'deti', titulo: 'Gerência de <strong>Meio Ambiente e Planejamento</strong>', idx: 'Lista: Meio ambiente', grupos: 'deti-ma', cols: 2, secao: 'seção 4.2' },
       { apos: 'com', cap: 'dcm', titulo: 'Comercial: <strong>prospecção e relacionamento</strong>', idx: 'Lista: Comercial, prospecção', grupos: ['com-bases', 'com-plano', 'com-eventos', 'com-visitas', 'com-neg'], cols: 3, secao: 'seção 6.2' },
       { apos: 'mkt', cap: 'dcm', titulo: 'Marketing: <strong>materiais e eventos</strong>', idx: 'Lista: Marketing, materiais e eventos', grupos: ['mkt-plat', 'mkt-eventos'], cols: 2, secao: 'seção 6.1' },
       { apos: 'mkt', cap: 'dcm', titulo: 'Marketing: <strong>redes e rotinas</strong>', idx: 'Lista: Marketing, redes e rotinas', grupos: ['mkt-redes', 'mkt-rotinas'], cols: 2, lg: true, secao: 'seção 6.1' },
@@ -6744,14 +6987,9 @@
     const ROTULO_ST = { and: 'Em andamento', cont: 'Contínuo' };
 
     (function montarLista() {
-      // Numeração contínua dentro do capítulo, como no painel
       const grupoInfo = {};
       ORDEM_CAPS.forEach(id => {
-        let n = 0;
-        CAPS[id].setores.forEach(s => s.grupos.forEach(g => {
-          grupoInfo[g.id] = { g, setor: s.id, ini: n + 1 };
-          n += g.itens.length;
-        }));
+        CAPS[id].setores.forEach(s => s.grupos.forEach(g => { grupoInfo[g.id] = { g, setor: s.id }; }));
       });
       const gruposDe = p => {
         const ids = Array.isArray(p.grupos) ? p.grupos : [p.grupos];
@@ -6762,11 +7000,13 @@
       const paginasDoCap = id => PAGINAS_LISTA.filter(p => p.cap === id);
       const paginasDoSetor = a => PAGINAS_LISTA.filter(p => p.apos === a);
 
-      // Toda a lista paginada, sem item de fora nem repetido, e na ordem
-      // de CAPS: senão a numeração salta entre páginas e diverge do painel
+      // Grupos podem ficar sem página (Operações e os pareceres comerciais
+      // saíram a pedido do cliente), mas nunca repetidos nem fora da ordem de CAPS
       const usados = PAGINAS_LISTA.flatMap(gruposDe);
-      if (usados.join() !== Object.keys(grupoInfo).join()) {
-        console.warn('[lista] paginação incompleta, repetida ou fora da ordem de CAPS');
+      const ordem = Object.keys(grupoInfo);
+      const pos = usados.map(g => ordem.indexOf(g));
+      if (pos.some((p, i) => p < 0 || (i > 0 && p <= pos[i - 1]))) {
+        console.warn('[lista] paginação repetida ou fora da ordem de CAPS');
       }
 
       const ultima = {};   // última página inserida após cada âncora
@@ -6775,22 +7015,18 @@
         if (!ancora) { console.warn('[lista] âncora ausente:', p.apos); return; }
         const c = CAPS[p.cap];
         const grupos = gruposDe(p);
-        const nPag = grupos.reduce((a, g) => a + grupoInfo[g].g.itens.length, 0);
         const doSetor = paginasDoSetor(p.apos);
         const parte = doSetor.length > 1 ? ' · ' + (doSetor.indexOf(p) + 1) + ' de ' + doSetor.length : '';
-        const k = paginasDoCap(p.cap).length > 1
-          ? '<b>' + nPag + '</b><span>de ' + CONTA[p.cap] + ' entregáveis<br>do capítulo</span>'
-          : '<b>' + nPag + '</b><span>entregáveis<br>no período</span>';
 
         let lista = '';
         grupos.forEach(gid => {
-          const { g, ini } = grupoInfo[gid];
-          lista += '<p class="lst-gt">' + esc(g.nome) + '<span>' + g.itens.length + '</span></p>';
-          g.itens.forEach((it, j) => {
+          const { g } = grupoInfo[gid];
+          lista += '<p class="lst-gt">' + esc(g.nome) + '</p>';
+          g.itens.forEach(it => {
             const t = typeof it === 'string' ? it : it.t;
             const st = (typeof it === 'object' && it.st)
               ? ' <span class="stt stt-' + it.st + '">' + ROTULO_ST[it.st] + '</span>' : '';
-            lista += '<p class="lst-it"><i>' + String(ini + j).padStart(2, '0') + '</i><span>' + esc(t) + st + '</span></p>';
+            lista += '<p class="lst-it"><i></i><span>' + esc(t) + st + '</span></p>';
           });
         });
 
@@ -6803,7 +7039,7 @@
           + '<div class="lst-head"><div>'
           + '<p class="eyebrow anim d1">Capítulo ' + c.cap + ' · Lista de entregáveis' + parte + '</p>'
           + '<h2 class="title anim d2">' + p.titulo + '</h2>'
-          + '</div><p class="lst-k anim d2">' + k + '</p></div>'
+          + '</div></div>'
           + '<div class="body lst-body"><div class="lst' + (p.lg ? ' lst-lg' : '') + ' anim d3" style="column-count:' + p.cols + '">' + lista + '</div></div>'
           + '</div>'
           + '<div class="foot anim d5"><span class="foot-note">Relatório Gerencial, ' + p.secao + '.</span></div>';

@@ -9,3 +9,7 @@ package-lock.json
 
 # Documento-fonte interno (não publicar)
 documentos/
+
+# Dados de pessoal e fotos originais (não publicar; o deck usa assets/equipe/)
+fotos_equipe/
+Funcionários.xlsx

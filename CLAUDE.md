@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-**Relatório Gerencial dos Entregáveis — ZPE Maranhão.** A 36-slide deck presenting what each directorate of ZPE Maranhão (Brazilian Special Export Processing Zone) delivered between November 2025 and September 2026: 174 deliverables from five directorates plus 23 from the Assessoria da Presidência (197 in total).
+**Relatório Gerencial dos Entregáveis — ZPE Maranhão.** A 37-slide deck presenting what each directorate of ZPE Maranhão (Brazilian Special Export Processing Zone) delivered between November 2025 and September 2026: 178 deliverables from five directorates plus 23 from the Assessoria da Presidência (201 in total).
 
 One static HTML file, with no build step, no framework and no runtime dependencies. `playwright` and `pdf-lib` are dev-only, used by the scripts.
 
@@ -14,6 +14,7 @@ It was split out of `../apresentacao-consad` (where it was `index_entregaveis.ht
 index.html          the deck (HTML + CSS + JS, all inline)
 assets/             only the files index.html references
   images/           bg_hero_blue_compressed.jpg, world_dotted.svg, world_dotted_raster.png
+  equipe/           240px staff headshots (cropped from fotos_equipe/, which stays out of git)
   logos/            zpe_white.png, investe-ma-logo-branco.png, governo-ma-logo.png
   videos/           video_{capa,card,enc}_web.{mp4,webm} + _poster.jpg
 design_system/      brand source of truth (copy of the ZPE design system)
@@ -65,12 +66,12 @@ Each sector ends with the full list of its deliverables. These slides are **gene
 { apos: 'eng', cap: 'deti', titulo: '…', idx: 'Lista: Engenharia', grupos: 'deti-eng', cols: 2, lg: true, secao: 'seção 4.1' }
 ```
 
-- `apos` names the anchor: the last slide of the sector carries `data-lista="eng"`, and its pages are inserted right after it, in order. Anchors: `eng`, `ma`, `ops`, `com`, `mkt`, `daf`, `jur`, `pres`.
+- `apos` names the anchor: the last slide of the sector carries `data-lista="eng"`, and its pages are inserted right after it, in order. Anchors: `eng`, `ma`, `ops`, `com`, `mkt`, `daf`, `jur`, `pres`. Operações and the Comercial pareceres/portfólio groups have no list page (client removed them).
 - `grupos` is a group id list, or a setor id (expands to all its groups).
 - `cols` (2 or 3) sets the CSS multicol count; `lg: true` enlarges type on short pages so they don't sit half-empty.
-- Items are numbered continuously within the chapter.
+- Items are bulleted, not numbered, and list pages show no counts (client request: no totals on the lists).
 
-**Pagination is fixed, not automatic** — it was measured at 1920×1080 with the real fonts. Two runtime guards warn in the console: pages must cover every group **in `CAPS` order** (otherwise numbering jumps between pages), and after `document.fonts.ready` any page whose list overflows its body is reported. If you edit `CAPS` text, run `npm run verificar`; if a page overflows, move groups between pages or add a page.
+**Pagination is fixed, not automatic** — it was measured at 1920×1080 with the real fonts. Two runtime guards warn in the console: pages must list groups **in `CAPS` order, without repeats** (groups may be left out) (otherwise numbering jumps between pages), and after `document.fonts.ready` any page whose list overflows its body is reported. If you edit `CAPS` text, run `npm run verificar`; if a page overflows, move groups between pages or add a page.
 
 Slide titles for the index overlay (`G`) live in `TITULOS` for the static slides and are written to `data-titulo` **before** the list is interleaved; generated slides carry their own `data-titulo`. When adding or removing a static slide, update `TITULOS`.
 
