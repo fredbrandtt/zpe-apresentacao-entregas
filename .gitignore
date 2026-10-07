@@ -1,0 +1,11 @@
+.DS_Store
+Thumbs.db
+node_modules/
+package-lock.json
+
+# Saídas dos scripts
+.shots/
+*.pdf
+
+# Documento-fonte interno (não publicar)
+documentos/
